@@ -1,100 +1,452 @@
-<div id="portfolio-page" class="portfolio-page-content">
-    <div class="portfolio-page-wrapper">
-        <div class="portfolio-page-nav">
-            <div class="nav-item portfolio-page-prev-next">
-                <a class="ajax-page-load" href="portfolio-project-2.html"><i class="lnr lnr-chevron-left"></i></a>
-                <a class="ajax-page-load" href="portfolio-project-1.html"><i class="lnr lnr-chevron-right"></i></a>
-            </div>
-            <div class="nav-item portfolio-page-close-button">
-                <a id="portfolio-page-close-button" href="#"><i class="lnr lnr-cross"></i></a>
-            </div>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <title>Chhiev - Resume / CV / vCard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Leven - Resume / CV / vCard Template" />
+    <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, portfolio" />
+    <meta name="author" content="lmpixels" />
+    <link rel="shortcut icon" href="favicon.png">
+
+
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/dlmenu.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+  </head>
+
+  <body>
+
+    <div class="lm-animated-bg"></div>
+    
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
         </div>
-
-        <div class="portfolio-page-title">
-            <h1>Portfolio Project 3</h1>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-8 col-md-8 portfolio-block">
-                <div class="owl-carousel portfolio-page-carousel">
-                    <div class="item">
-                        <img src="img/portfolio/full/1.jpg" alt="" />
-                    </div>
-                    <div class="item">
-                        <img src="img/portfolio/full/2.jpg" alt="" />
-                    </div>
-                    <div class="item">
-                        <img src="img/portfolio/full/3.jpg" alt="" />
-                    </div>
-                </div>
-
-                <div class="portfolio-page-video embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/97102654?autoplay=0"></iframe>
-                </div>
-
-                <script type="text/javascript">
-                    jQuery(document).ready(function($){
-                        $('.portfolio-page-carousel').imagesLoaded(function(){
-                            $('.portfolio-page-carousel').owlCarousel({
-                                smartSpeed:1200,
-                                items: 1,
-                                loop: true,
-                                dots: true,
-                                nav: true,
-                                navText: false,
-                                margin: 10,
-                                autoHeight:true
-                            });
-                        });
-                    });
-                </script>
-            </div>
-
-            <div class="col-sm-4 col-md-4 portfolio-block">
-                <!-- Project Description -->
-                <div class="project-description">
-                    <div class="block-title">
-                        <h3>Description</h3>
-                    </div>
-                    <ul class="project-general-info">
-                        <li><p><i class="lnr lnr-user"></i> Alex Smith</p></li>
-                        <li><p><i class="lnr lnr-link"></i> <a href="#" target="_blank">www.project-site.com</a></p></li>
-                        <li><p><i class="lnr lnr-calendar-full"></i> 25 april, 2021</p></li>
-                    </ul>
-
-                    <p class="text-justify">Aliquam euismod aliquam massa, quis eleifend dui sodales vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                    <!-- /Project Description -->
-
-                    <!-- Technology -->
-                    <div class="tags-block">
-                        <div class="block-title">
-                            <h3>Technology</h3>
-                        </div>
-                        <ul class="tags">
-                            <li><a>HTML5</a></li>
-                            <li><a>CSS3</a></li>
-                            <li><a>jQuery</a></li>
-                            <li><a>Ajax</a></li>
-                            <li><a>PHP5</a></li>
-                        </ul>
-                    </div>
-                    <!-- /Technology -->
-
-                    <!-- Share Buttons -->
-                    <div class="share-buttons">
-                        <div class="block-title">
-                            <h3>Share</h3>
-                        </div>
-                        <div class="share-buttons-block">
-                            <a href="#" target="_blank" class="btn"><i class="fab fa-facebook-f"></i> </a>
-                            <a href="#" target="_blank" class="btn"><i class="fab fa-twitter"></i> </a>
-                            <a href="#" target="_blank" class="btn"><i class="fab fa-dribbble"></i> </a>
-                        </div>
-                    </div>
-                    <!-- /Share Buttons -->
-                </div>
-                <!-- Project Description -->
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+    <!-- /Loading animation -->
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper bg-move-effect">
+      <div class="page-content site-content">
+
+        <!-- Site Header -->
+        <header id="site_header" class="header">
+          <div class="header-content">
+            <!-- Menu Button Icon -->
+            <div class="menu-button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <!-- /Menu Button Icon -->
+                
+            <!-- Personal Photo or Site Logo -->
+            <!--<div class="header-photo">
+              <a href="index.html">
+                <img src="./img/profile_img.jpg" alt="image">
+              </a>
+            </div>-->
+            <!-- /Personal Photo or Site Logo -->
+
+            <!-- Text Logo -->
+            <div class="header-titles">
+              <a href="index.html">
+                <h2>AS</h2>
+              </a>
+            </div>
+            <!-- Text Logo -->
+          </div>
+          
+          <!-- Site Main Menu & Profile Card -->
+          <div class="site-menu profile-card-on flex-v-align dl-menuwrapper">
+            <!-- Profile Card -->
+            <div class="profile-card flex-v-align">
+              <div class="profile-card-block">
+                <!-- Profile Photo -->
+                <div class="profile-img">
+                  <a href="index.html">
+                    <img src="./img/chhiev.jpg" alt="image">
+                  </a>
+                </div>
+                <!-- /Profile Photo -->
+                
+                <!-- Profile Titles -->
+                <a href="#">
+                  <h3 class="site-title">Nanchhiev Pil</h3>
+                </a>
+                            
+                <h5 class="site-subtitle">Web Designer</h5>
+                <!-- /Profile Titles -->
+                
+                <!-- Social Links -->
+                <div class="social-links">
+                  <ul>
+                    <li>
+                      <a href="https://t.me/pilnanchhiev" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank" ><h5>TK</h5>
+                        <i class="fa-brands fa-tiktok"></i>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+                <!-- /Social Links -->
+              </div>
+            </div>
+            <!-- /Profile Card -->
+
+            <!-- Main Menu -->
+            <ul class="alan-classic-menu main-menu dl-menu dl-menuopen">
+              <li class="menu-item menu-item-has-children">
+                <a href="index.html">About Me</a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="index.html">About Me</a>
+                  </li>
+                  
+                  <li class="menu-item ">
+                    <a href="index-2.html">About Me 2</a>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="menu-item">
+                <a href="resume.html">Resume</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="portfolio.html">Portfolio</a>
+              </li>
+
+              <li class="menu-item current-menu-item">
+                <a href="blog.html">Blog</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="portfolio-project-1.html">Video</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="portfolio-project-2.html">Books</a>
+              </li>
+              
+              <li class="menu-item">
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main Menu -->
+          </div>
+          <!-- /Site Main Menu & Profile Card -->
+        </header>
+        <!-- /Site Header -->
+
+        <!-- Right Sidebar -->
+        <div class="r-sidebar">
+          <div class="sidebar-button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        
+        <div id="blog-sidebar" class="blog-sidebar">
+          <div class="blog-sidebar-content clearfix">
+            <div class="sidebar-item">
+              <div class="sidebar-title">
+                <h4>Recent Posts</h4>
+              </div>
+              <ul>
+                <li>
+                  <a href="#">Best Practices for Animated Progress Indicators</a>
+                </li>
+                
+                <li>
+                  <a href="#">Designing the Perfect Feature Comparison Table</a>
+                </li>
+                
+                <li>
+                  <a href="#">An Overview of E-Commerce Platforms</a>
+                </li>
+                
+                <li>
+                  <a href="#">Why I Switched to Sketch For UI Design</a>
+                </li>
+                
+                <li>
+                  <a href="#">Creative and Innovative Navigation Designs</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-item"><div class="sidebar-title"><h4>Archives</h4></div>
+              <ul>
+                <li>
+                  <a href='#'>June 2020</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-item">
+              <div class="sidebar-title">
+                <h4>Categories</h4>
+              </div>
+              
+              <ul>
+                <li class="cat-item">
+                  <a href="#">Design</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">E-Commerce</a>
+                </li>
+
+                <li class="cat-item">
+                  <a href="#">UI</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">Uncategorized</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">WordPress</a>
+                </li>
+              </ul>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- /Right Sidebar -->
+
+        <!-- Page Content -->
+        <div class="content-area single-page-area" data-animation="animated-section-rotateRoomBottomIn">
+          <div class="single-page-content">
+            <div class="content-wrapper">
+              <div class="page-title">
+                <h1>Music</h1>
+              </div>
+
+              <article class="page type-page">
+                <div class="entry-content">
+
+                  <div class="row">
+                    <div class=" col-xs-12 col-sm-12 ">
+                      <div class="blog-masonry two-columns clearfix">
+
+                       
+                        <!-- Blog Post 1 -->
+                        <div class="item">
+                          
+                                <div class="music-list-container">
+                                    <h2>Now Playing: My Song</h2>  
+                                    
+                                    <audio controls>
+                                        <source src="./img/music/Kon Akatanh Nu Roneat.mp3" type="audio/mpeg">
+                                        <source src="path/to/your/audio/file.ogg" type="audio/ogg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+
+                                    <a id="downloadBtn" href="img/music/Kon Akatanh Nu Roneat.mp3" download>Download Music</a>
+                                </div>
+                           
+                        </div>
+                        <!-- End of Blog Post 1 -->
+
+                          <!-- Blog Post 1 -->
+                          <div class="item">
+                          
+                            <div class="music-list-container">
+                                <h2>Now Playing: My Song</h2>  <audio controls>
+                                    <source src="./img/music/Kon Akatanh Nu Roneat.mp3" type="audio/mpeg">
+                                    <source src="path/to/your/audio/file.ogg" type="audio/ogg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <a id="downloadBtn" href="img/music/Kon Akatanh Nu Roneat.mp3" download>Download Music</a>
+                            </div>
+                       
+                    </div>
+                    <!-- End of Blog Post 1 -->
+
+                      <!-- Blog Post 1 -->
+                      <div class="item">
+                          
+                        <div class="music-list-container">
+                            <h2>Now Playing: My Song</h2>  
+                            
+                            <audio controls>
+                                <source src="./img/music/Kon Akatanh Nu Roneat.mp3" type="audio/mpeg">
+                                <source src="path/to/your/audio/file.ogg" type="audio/ogg">
+                                Your browser does not support the audio element.
+                            </audio>
+
+                            <a id="downloadBtn" href="img/music/Kon Akatanh Nu Roneat.mp3" download>Download Music</a>
+                        </div>
+                   
+                </div>
+                <!-- End of Blog Post 1 -->
+
+                  <!-- Blog Post 1 -->
+                  <div class="item">
+                  
+                    <div class="music-list-container">
+                        <h2>Now Playing: My Song</h2>  <audio controls>
+                            <source src="./img/music/Kon Akatanh Nu Roneat.mp3" type="audio/mpeg">
+                            <source src="path/to/your/audio/file.ogg" type="audio/ogg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <a id="downloadBtn" href="img/music/Kon Akatanh Nu Roneat.mp3" download>Download Music</a>
+                    </div>
+               
+            </div>
+            <!-- End of Blog Post 1 -->
+
+              <!-- Blog Post 1 -->
+              <div class="item">
+                          
+                <div class="music-list-container">
+                    <h2>Now Playing: My Song</h2>  
+                    
+                    <audio controls>
+                        <source src="./img/music/Kon Akatanh Nu Roneat.mp3" type="audio/mpeg">
+                        <source src="path/to/your/audio/file.ogg" type="audio/ogg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <a id="downloadBtn" href="img/music/Kon Akatanh Nu Roneat.mp3" download>Download Music</a>
+                </div>
+           
+        </div>
+        <!-- End of Blog Post 1 -->
+
+          <!-- Blog Post 1 -->
+          <div class="item">
+          
+            <div class="music-list-container">
+                <h2>Now Playing: My Song</h2>  <audio controls>
+                    <source src="./img/music/Kon Akatanh Nu Roneat.mp3" type="audio/mpeg">
+                    <source src="path/to/your/audio/file.ogg" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
+                <a id="downloadBtn" href="img/music/Kon Akatanh Nu Roneat.mp3" download>Download Music</a>
+            </div>
+       
+    </div>
+    <!-- End of Blog Post 1 -->
+                        
+                      </div>
+
+                      <a class="btn btn-primary" href="#">See All Posts</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- /Footer -->
+          <footer class="site-footer clearfix">
+            <div class="footer-social">
+              <ul class="footer-social-links">
+                <li>
+                  <a href="https://t.me/pilnanchhiev" target="_blank">Telegram</a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">Facebook</a>
+                </li>
+                <li>
+                  <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank">Tiktok</a>
+                </li>
+              </ul>
+            </div>
+        
+            <div class="footer-copyrights">
+              <p>© 2024 All rights reserved.</p>
+            </div>
+          </footer>
+          <!-- /Footer -->
+        </div>
+        <!-- /Page Content -->
+      </div>
+    </div>
+    <!-- /Page Wrapper -->
+    <style>
+      
+        .music-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 100px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: fit-content;
+        }
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+            text-align: center; /* Center the title */
+        }
+        audio {
+            margin-bottom: 10px;
+            width: 90%;
+        }
+        #downloadBtn {
+
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;    
+            text-decoration: none;
+            font-size: 16px;
+        }
+        #downloadBtn:hover {
+            background-color: #367c39;
+        }
+
+        .music-list-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/jquery.shuffle.min.js'></script>
+    <script src='js/masonry.pkgd.min.js'></script>
+    <script src='js/owl.carousel.min.js'></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.dlmenu.js"></script>
+    <script src="js/validator.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
