@@ -274,7 +274,7 @@
                     </div>
 
                     <div class=" col-xs-12 col-sm-4 ">
-                      <div class="lm-info-block gray-default">
+                      <div class="lm-info-block gray-default" onclick="handlePhoneClick('0715347374');">
                         <i class="lnr lnr-phone-handset"></i>
                         <h4> 0715 347 374 </h4>
                         <span class="lm-info-block-text"></span>
@@ -282,7 +282,7 @@
                     </div>
 
                     <div class=" col-xs-12 col-sm-4 ">
-                      <div class="lm-info-block gray-default">
+                      <div class="lm-info-block gray-default" >
                         <i class="lnr lnr-envelope"></i>
                         <h4>pilnanchhiev54@gmail.com</h4>
                         <span class="lm-info-block-text"></span>
@@ -392,5 +392,22 @@
     <script src="js/jquery.dlmenu.js"></script>
     <script src="js/validator.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+      function handlePhoneClick(phoneNumber) {
+  // Log the clicked phone number to the console for debugging purposes.
+  console.log("Phone number clicked:", phoneNumber);
+
+  // Attempt to initiate a phone call.
+  // The 'tel:' protocol is used to make phone calls directly from the browser on compatible devices.
+  // Spaces are removed from the phone number to ensure the 'tel:' link works correctly.
+  window.location.href = 'tel:' + phoneNumber.replace(/\s/g, '');
+
+      }
+
+    </script>
+
+
+
   </body>
 </html>
