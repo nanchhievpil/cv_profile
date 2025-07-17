@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
     <style>
         /* General Styling */
         body {
@@ -18,9 +18,26 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden; /* Hide confetti overflow */
+            overflow: hidden;
             padding: 2rem;
             box-sizing: border-box;
+        }
+
+        /* Music Start Button */
+        #start-button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        #start-button:hover {
+            transform: scale(1.05);
         }
 
         /* Main Card Container */
@@ -37,6 +54,7 @@
             animation: floatIn 1s ease-out forwards;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none; /* Hidden by default */
         }
 
         @keyframes floatIn {
@@ -59,54 +77,17 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
         
-        /* Photo Placeholder and Image Style */
-        .photo-container {
-            width: 180px;
-            height: 180px;
+        /* Photo Style */
+        .photo {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            background: #e7e7e7;
-            margin: 1rem auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #888;
-            font-size: 0.9rem;
+            object-fit: cover;
             border: 5px solid #fff;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        #photo-preview {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Upload Button Style */
-        #upload-label {
-            display: inline-block;
-            background-color: #e91e63;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        #upload-label:hover {
-            background-color: #c2185b;
-            transform: scale(1.05);
-        }
-
-        #photoUpload {
-            display: none;
-        }
-        
         /* Message Style */
         p {
             font-size: 1.1rem;
@@ -197,26 +178,19 @@
     </style>
 </head>
 <body>
-   
-    
-    <div class="card">
 
-        <div  >
-            <a href="index.html">
-                <h2  >AS</h2>
-              </a>
-          </div>
-    
+    <button id="start-button">Click Show Happy Birthday</button>
+
+    <div class="card" id="birthday-card">
         <h1>Happy Birthday, Pil Nanchhiev!</h1>
 
-        <div class="photo-container" id="photo-container">
-            <img id="photo-preview" src="img/portfolio/5993.png" alt="Your uploaded photo will appear here.">
-        </div>
+        <!-- To add a real photo, replace the 'src' attribute with the URL of your image. -->
+        <img src="img/chhiev.jpg" 
+             alt="Birthday person's photo" 
+             class="photo"
+             onerror="this.onerror=null;this.src='img/chhiev.jpg';">
 
-        <!-- <input type="file" id="photoUpload" accept="image/*">
-        <label for="photoUpload" id="upload-label">Upload Photo</label> -->
-
-        <p id="birthday-message">Congratulations on turning 28! Wishing you a day filled with love, laughter, and all your favorite things.</p>
+        <p id="birthday-message">Congratulations! Wishing you a day filled with love, laughter, and all your favorite things.</p>
         
         <!-- Cake Section -->
         <div class="cake-container">
@@ -230,44 +204,98 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Confetti Effect ---
-            const confettiContainer = document.body;
-            const confettiCount = 100;
+            const startButton = document.getElementById('start-button');
+            const birthdayCard = document.getElementById('birthday-card');
 
-            for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.animationDuration = `${Math.random() * 3 + 3}s`;
-                confetti.style.animationDelay = `${Math.random() * 5}s`;
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                
-                const random = Math.random();
-                if (random > 0.75) {
-                    confetti.style.width = '15px';
-                    confetti.style.height = '5px';
-                } else if (random > 0.5) {
-                    confetti.style.borderRadius = '50%';
+            // --- Age Calculation ---
+            const birthDate = new Date('1997-05-03');
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            const messageElement = document.getElementById('birthday-message');
+            messageElement.textContent = `Congratulations on turning ${age}! Wishing you a day filled with love, laughter, and all your favorite things.`;
+
+            // --- Confetti Generation ---
+            function createConfetti() {
+                const confettiContainer = document.body;
+                const confettiCount = 100;
+
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.animationDuration = `${Math.random() * 3 + 3}s`;
+                    confetti.style.animationDelay = `${Math.random() * 5}s`;
+                    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    
+                    const random = Math.random();
+                    if (random > 0.75) {
+                        confetti.style.width = '15px';
+                        confetti.style.height = '5px';
+                    } else if (random > 0.5) {
+                        confetti.style.borderRadius = '50%';
+                    }
+                    
+                    confettiContainer.appendChild(confetti);
                 }
-                
-                confettiContainer.appendChild(confetti);
             }
 
-            // --- Photo Upload Logic ---
-            const photoUpload = document.getElementById('photoUpload');
-            const photoPreview = document.getElementById('photo-preview');
-            const photoContainer = document.getElementById('photo-container');
+            // --- Music and Interaction Logic ---
+            startButton.addEventListener('click', async () => {
+                await Tone.start();
+                console.log('Audio context started');
 
-            photoUpload.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        photoPreview.src = e.target.result;
-                        photoPreview.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
-                }
+                // Create a synth and connect it to the main output
+                const synth = new Tone.Synth().toDestination();
+
+                // Define the "Happy Birthday" melody
+                const melody = [
+                    { note: 'C4', duration: '8n', time: 0 },
+                    { note: 'C4', duration: '8n', time: 0.25 },
+                    { note: 'D4', duration: '4n', time: 0.5 },
+                    { note: 'C4', duration: '4n', time: 1 },
+                    { note: 'F4', duration: '4n', time: 1.5 },
+                    { note: 'E4', duration: '2n', time: 2 },
+                    
+                    { note: 'C4', duration: '8n', time: 3 },
+                    { note: 'C4', duration: '8n', time: 3.25 },
+                    { note: 'D4', duration: '4n', time: 3.5 },
+                    { note: 'C4', duration: '4n', time: 4 },
+                    { note: 'G4', duration: '4n', time: 4.5 },
+                    { note: 'F4', duration: '2n', time: 5 },
+
+                    { note: 'C4', duration: '8n', time: 6 },
+                    { note: 'C4', duration: '8n', time: 6.25 },
+                    { note: 'C5', duration: '4n', time: 6.5 },
+                    { note: 'A4', duration: '4n', time: 7 },
+                    { note: 'F4', duration: '4n', time: 7.5 },
+                    { note: 'E4', duration: '4n', time: 8 },
+                    { note: 'D4', duration: '2n', time: 8.5 },
+
+                    { note: 'A#4', duration: '8n', time: 9.5 },
+                    { note: 'A#4', duration: '8n', time: 9.75 },
+                    { note: 'A4', duration: '4n', time: 10 },
+                    { note: 'F4', duration: '4n', time: 10.5 },
+                    { note: 'G4', duration: '4n', time: 11 },
+                    { note: 'F4', duration: '2n', time: 11.5 }
+                ];
+
+                // Create a part and start it
+                const part = new Tone.Part((time, value) => {
+                    synth.triggerAttackRelease(value.note, value.duration, time);
+                }, melody).start(0);
+
+                part.loop = true;
+                part.loopEnd = 13;
+                Tone.Transport.start();
+
+                // Hide button, show card, and start confetti
+                startButton.style.display = 'none';
+                birthdayCard.style.display = 'block';
+                createConfetti();
             });
         });
     </script>
