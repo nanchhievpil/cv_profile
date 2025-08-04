@@ -1,5 +1,5 @@
 /*
-* Template Name: Alan - Responsive vCard Template
+* Template Name: Chhiev - Responsive vCard Template
 * Author: lmpixels
 * Author URL: http://themeforest.net/user/lmpixels
 * Version: 1.0.0
