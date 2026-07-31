@@ -1,230 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Income & Expense App</title>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <title>Chhiev - Resume / CV / vCard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Leven - Resume / CV / vCard Template" />
+    <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, portfolio" />
+    <meta name="author" content="lmpixels" />
+    <link rel="shortcut icon" href="favicon.png">
+
+
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/dlmenu.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+  </head>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f4f4f4;
-    padding:20px;
-}
-
-.container{
-    max-width:900px;
-    margin:auto;
-}
-
-h1{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
-
-.row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-input,select{
-    flex:1;
-    padding:10px;
-    border:1px solid #ddd;
-    border-radius:8px;
-}
-
-button{
-    padding:10px 20px;
-    border:none;
-    background:#2196f3;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#1976d2;
-}
-
-.summary{
-    display:flex;
-    gap:20px;
-    margin-top:20px;
-}
-
-.box{
-    flex:1;
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
-
-.income{
-    color:green;
-}
-
-.expense{
-    color:red;
-}
-
-table{
-    width:100%;
-    margin-top:20px;
-    border-collapse:collapse;
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-}
-
-th,td{
-    padding:12px;
-    border-bottom:1px solid #ddd;
-    text-align:center;
-}
-
-.delete{
-    background:red;
-}
+:root{--bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#667085;--line:#d0d5dd;--blue:#2563eb;--green:#16803c;--red:#d92d20}
+body.dark{--bg:#111827;--card:#1f2937;--text:#f9fafb;--muted:#b8c0cc;--line:#344054}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;padding:20px}
+.app{max-width:1050px;margin:auto}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.card,.box{background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px #0001}
+.card{padding:16px;margin-top:16px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.box{padding:18px}.box span{color:var(--muted);font-weight:bold}.box h2{margin:8px 0 0}
+form,.filters{display:grid;grid-template-columns:1fr 1fr 2fr 1fr auto auto;gap:10px}
+input,select,button{padding:11px;border-radius:8px;border:1px solid var(--line);font:inherit}
+input,select{background:var(--card);color:var(--text);width:100%}button{border:0;background:var(--blue);color:white;cursor:pointer}
+button.gray{background:#667085}button.red{background:var(--red)}button:hover{filter:brightness(.94)}
+.filters{grid-template-columns:2fr 1fr auto auto;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-size:12px;text-transform:uppercase}.wrap{overflow:auto}.income{color:var(--green);font-weight:bold}.expense{color:var(--red);font-weight:bold}
+.badge{padding:5px 9px;border-radius:999px;font-weight:bold;background:#eef4ff}.empty{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:800px){.grid,form,.filters{grid-template-columns:1fr}.top button,form button,.filters button{width:100%}}
 </style>
-</head>
-<body>
 
-<div class="container">
+  <body>
 
-<h1>Income & Expense App</h1>
+    <div class="lm-animated-bg"></div>
+    
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
 
-<div class="card">
-<div class="row">
-<input type="date" id="date">
+    <!-- Page Wrapper -->
+    <div class="page-wrapper bg-move-effect">
+      <div class="page-content site-content">
 
-<select id="type">
-<option value="Income">Income</option>
-<option value="Expense">Expense</option>
-</select>
+        <!-- Site Header -->
+        <header id="site_header" class="header">
+          <div class="header-content">
+            <!-- Menu Button Icon -->
+            <div class="menu-button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <!-- /Menu Button Icon -->
+                
+            <!-- Personal Photo or Site Logo -->
+            <!--<div class="header-photo">
+              <a href="index.html">
+                <img src="./img/profile_img.jpg" alt="image">
+              </a>
+            </div>-->
+            <!-- /Personal Photo or Site Logo -->
 
-<input type="text" id="description" placeholder="Description">
+            <!-- Text Logo -->
+            <div class="header-titles">
+              <a href="index.html">
+                <h2>AS</h2>
+              </a>
+            </div>
+            <!-- Text Logo -->
+          </div>
+          
+          <!-- Site Main Menu & Profile Card -->
+          <div class="site-menu profile-card-on flex-v-align dl-menuwrapper">
+            <!-- Profile Card -->
+            <div class="profile-card flex-v-align">
+              <div class="profile-card-block">
+                <!-- Profile Photo -->
+                <div class="profile-img">
+                  <a href="index.html">
+                    <img src="./img/chhiev.jpg" alt="image">
+                  </a>
+                </div>
+                <!-- /Profile Photo -->
+                
+                <!-- Profile Titles -->
+                <a href="#">
+                  <h3 class="site-title">Nanchhiev Pil</h3>
+                </a>
+                            
+                <h5 class="site-subtitle">Web Designer</h5>
+                <!-- /Profile Titles -->
+                
+                <!-- Social Links -->
+                <div class="social-links">
+                  <ul>
+                    <li>
+                      <a href="https://t.me/pilnanchhiev" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank" ><h5>TK</h5>
+                        <i class="fa-brands fa-tiktok"></i>
+                      </a>
+                    </li>
 
-<input type="number" id="amount" placeholder="Amount">
+                  </ul>
+                </div>
+                <!-- /Social Links -->
+              </div>
+            </div>
+            <!-- /Profile Card -->
 
-<button onclick="addTransaction()">Save</button>
+            <!-- Main Menu -->
+            <ul class="alan-classic-menu main-menu dl-menu dl-menuopen">
+              <li class="menu-item menu-item-has-children">
+                <a href="index.html">About Me</a>
+                <ul class="sub-menu">
+                  <li class="menu-item current-menu-item">
+                    <a href="https://nanchhievpil.github.io/NhimHorMusic/">Click Musics</a> 
+                  </li>
+                  
+                  <li class="menu-item ">
+                    <a href="https://nanchhievpil.github.io/wedding_Pheng-Nary/">Wedding Sorn Nary</a>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="menu-item">
+                <a href="resume.html">Resume</a>
+              </li>
+
+              <li class="menu-item current-menu-item">
+                <a href="portfolio.html">Portfolio</a>
+              </li>
+
+              
+              <li class="menu-item">
+                <a href="loan.html">Loan </a>
+              </li>
+
+              <li class="menu-item">
+                <a href="income.html">Income</a>
+              </li>
+
+
+              <li class="menu-item">
+                <a href="video.html">Video</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="book.html">Books</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="lessons.html">Courese</a>
+              </li>
+<!-- 
+              <li class="menu-item">
+                <a href="artwork.html">Artwork</a>
+              </li> -->
+              
+              <li class="menu-item">
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main Menu -->
+          </div>
+          <!-- /Site Main Menu & Profile Card -->
+        </header>
+        <!-- /Site Header -->
+
+        <!-- Right Sidebar -->
+        <div class="r-sidebar">
+          <div class="sidebar-button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+         <div id="blog-sidebar" class="blog-sidebar">
+          <div class="blog-sidebar-content clearfix">
+            <div class="sidebar-item">
+              <div class="sidebar-title">
+                <h4>Recent Posts</h4>
+              </div>
+              <ul>
+                <li>
+                  <a href="#">Best Practices for Animated Progress Indicators</a>
+                </li>
+                
+                <li>
+                  <a href="#">Designing the Perfect Feature Comparison Table</a>
+                </li>
+                
+                <li>
+                  <a href="#">An Overview of E-Commerce Platforms</a>
+                </li>
+                
+                <li>
+                  <a href="#">Why I Switched to Sketch For UI Design</a>
+                </li>
+                
+                <li>
+                  <a href="#">Creative and Innovative Navigation Designs</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-item"><div class="sidebar-title"><h4>Archives</h4></div>
+              <ul>
+                <li>
+                  <a href='#'>June 2020</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-item">
+              <div class="sidebar-title">
+                <h4>Categories</h4>
+              </div>
+              
+              <ul>
+                <li class="cat-item">
+                  <a href="#">Design</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">E-Commerce</a>
+                </li>
+
+                <li class="cat-item">
+                  <a href="#">UI</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">Uncategorized</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">WordPress</a>
+                </li>
+              </ul>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- /Right Sidebar -->
+  <div class="content-area single-page-area" data-animation="animated-section-rotateRoomBottomIn">
+          <div class="single-page-content">
+            <div class="content-wrapper">
+              <div class="page-title">
+              <h1>Income & Expense Tracker</h1><p>Saved automatically in your browser.</p>
+              </div>
+
+
+<div class="app">
+  <div class="top">
+    <div><button onclick="toggleDark()">Dark Mode</button> <button onclick="exportCSV()">Export CSV</button></div>
+  </div>
+
+  <div class="grid">
+    <div class="box"><span>Total Income</span><h2 id="income">$0.00</h2></div>
+    <div class="box"><span>Total Expense</span><h2 id="expense">$0.00</h2></div>
+    <div class="box"><span>Balance</span><h2 id="balance">$0.00</h2></div>
+  </div>
+
+  <div class="card">
+    <form onsubmit="saveTx(event)">
+      <input type="hidden" id="editId">
+      <input type="date" id="date" required>
+      <select id="type"><option>Income</option><option>Expense</option></select>
+      <input type="text" id="desc" placeholder="Description" required>
+      <input type="number" id="amount" placeholder="Amount" min="0.01" step="0.01" required>
+      <button id="saveBtn">Save</button>
+      <button type="button" class="gray" onclick="resetForm()">Cancel</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="filters">
+      <input id="search" oninput="render()" placeholder="Search transactions">
+      <select id="filter" onchange="render()"><option>All</option><option>Income</option><option>Expense</option></select>
+      <button class="gray" onclick="clearSearch()">Clear Search</button>
+      <button class="red" onclick="clearAll()">Clear All</button>
+    </div>
+    <div class="wrap"><table>
+      <thead><tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th><th>Action</th></tr></thead>
+      <tbody id="list"></tbody>
+    </table></div>
+  </div>
 </div>
-</div>
 
-<div class="summary">
-<div class="box">
-<h3>Total Income</h3>
-<h2 class="income" id="income">$0</h2>
-</div>
 
-<div class="box">
-<h3>Total Expense</h3>
-<h2 class="expense" id="expense">$0</h2>
-</div>
 
-<div class="box">
-<h3>Balance</h3>
-<h2 id="balance">$0</h2>
-</div>
-</div>
+        <!-- Page Content -->
+     
+        <!-- /Page Content -->
+      </div>
+    </div>
+    <!-- /Page Wrapper -->
 
-<table>
-<thead>
-<tr>
-<th>Date</th>
-<th>Type</th>
-<th>Description</th>
-<th>Amount</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="list"></tbody>
-</table>
 
-</div>
-
-<script>
-let transactions = [];
-
-function addTransaction(){
-
-let date = document.getElementById("date").value;
-let type = document.getElementById("type").value;
-let description = document.getElementById("description").value;
-let amount = Number(document.getElementById("amount").value);
-
-if(date=="" || description=="" || amount<=0){
-    alert("Please fill all fields");
-    return;
-}
-
-transactions.push({
-    date,
-    type,
-    description,
-    amount
-});
-
-showTransactions();
-}
-
-function showTransactions(){
-
-let html = "";
-let income = 0;
-let expense = 0;
-
-transactions.forEach((t,index)=>{
-
-if(t.type==="Income"){
-    income += t.amount;
-}else{
-    expense += t.amount;
-}
-
-html += `
-<tr>
-<td>${t.date}</td>
-<td>${t.type}</td>
-<td>${t.description}</td>
-<td>$${t.amount}</td>
-<td>
-<button class="delete" onclick="deleteTransaction(${index})">
-Delete
-</button>
-</td>
-</tr>
-`;
-});
-
-document.getElementById("list").innerHTML = html;
-
-document.getElementById("income").innerHTML = "$"+income;
-document.getElementById("expense").innerHTML = "$"+expense;
-document.getElementById("balance").innerHTML = "$"+(income-expense);
-}
-
-function deleteTransaction(index){
-transactions.splice(index,1);
-showTransactions();
-}
+    <script>
+let tx=JSON.parse(localStorage.getItem("transactions"))||[];
+const $=id=>document.getElementById(id), money=n=>"$"+Number(n).toFixed(2);
+function store(){localStorage.setItem("transactions",JSON.stringify(tx))}
+function resetForm(){ $("editId").value=""; $("date").value=new Date().toISOString().slice(0,10); $("type").value="Income"; $("desc").value=""; $("amount").value=""; $("saveBtn").textContent="Save" }
+function saveTx(e){e.preventDefault();let item={id:$("editId").value||Date.now().toString(),date:$("date").value,type:$("type").value,desc:$("desc").value.trim(),amount:+$("amount").value}; if(!item.date||!item.desc||item.amount<=0)return alert("Please fill all fields"); tx=$("editId").value?tx.map(x=>x.id==item.id?item:x):[...tx,item]; store(); resetForm(); render()}
+function editTx(id){let x=tx.find(t=>t.id==id); $("editId").value=x.id; $("date").value=x.date; $("type").value=x.type; $("desc").value=x.desc; $("amount").value=x.amount; $("saveBtn").textContent="Update"}
+function delTx(id){if(confirm("Delete this transaction?")){tx=tx.filter(x=>x.id!=id);store();render()}}
+function clearAll(){if(tx.length&&confirm("Delete all transactions?")){tx=[];store();resetForm();render()}}
+function clearSearch(){$("search").value="";$("filter").value="All";render()}
+function rows(){let q=$("search").value.toLowerCase(),f=$("filter").value;return tx.filter(x=>(f=="All"||x.type==f)&&`${x.date} ${x.type} ${x.desc} ${x.amount}`.toLowerCase().includes(q))}
+function render(){let inc=0,exp=0;tx.forEach(x=>x.type=="Income"?inc+=x.amount:exp+=x.amount);$("income").textContent=money(inc);$("expense").textContent=money(exp);$("balance").textContent=money(inc-exp);let r=rows().sort((a,b)=>b.date.localeCompare(a.date));$("list").innerHTML=r.length?r.map(x=>`<tr><td>${x.date}</td><td><span class="badge">${x.type}</span></td><td>${x.desc}</td><td class="${x.type=="Income"?"income":"expense"}">${money(x.amount)}</td><td><button onclick="editTx('${x.id}')">Edit</button> <button class="red" onclick="delTx('${x.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="5" class="empty">No transactions found.</td></tr>`}
+function exportCSV(){let r=rows();if(!r.length)return alert("No data to export");let csv="Date,Type,Description,Amount\n"+r.map(x=>[x.date,x.type,`"${x.desc.replaceAll('"','""')}"`,x.amount.toFixed(2)].join(",")).join("\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="transactions.csv";a.click()}
+function toggleDark(){document.body.classList.toggle("dark");localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light")}
+if(localStorage.getItem("theme")=="dark")document.body.classList.add("dark"); resetForm(); render();
 </script>
 
-</body>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/jquery.shuffle.min.js'></script>
+    <script src='js/masonry.pkgd.min.js'></script>
+    <script src='js/owl.carousel.min.js'></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.dlmenu.js"></script>
+    <script src="js/validator.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
