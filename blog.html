@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/main.css" type="text/css">
   </head>
 
+ 
   <body>
 
     <div class="lm-animated-bg"></div>
@@ -252,7 +253,7 @@
           <div class="single-page-content">
             <div class="content-wrapper">
               <div class="page-title">
-                <h1>Blog</h1>
+                <h1>Music Song</h1>
               </div>
 
               <article class="page type-page">
@@ -262,127 +263,153 @@
                     <div class=" col-xs-12 col-sm-12 ">
 
                       <div class="blog-masonry two-columns clearfix">
-                        <!-- Blog Post 1 -->
-                        <div class="item">
-                          <div class="blog-card">
-                            <div class="media-block">
-                             
-                              <a href="single-blog.html">
-                                
-                                <img src="./img/blog/A.png" alt="ស្នេហ៍ពិត" title="ស្នេហ៍ពិត" />
-                                <div class="mask"></div>
-                              </a>
-                            </div>
-                            <div class="post-info">
-                              <div class="post-date">04 Dec 2019</div>
-                              <a href="">
-                                <h4 class="blog-item-title">ស្នេហ៍ពិត</h4>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Blog Post 1 -->
-                        
-                        <!-- Blog Post 2 -->
-                        <div class="item">
-                          <div class="blog-card">
-                            <div class="media-block">
-                             
 
-                              <a href="single-blog.html">
-                                <img src="./img/blog/B.png" alt="សម្លាញ់អើយគ្នាខូចចិត្តហើយ" title="" />
-                                <div class="mask"></div>
-                              </a>
-                            </div>
-                            <div class="post-info">
-                              <div class="post-date">04 Dec 2019</div>
-                              <a href="">
-                                <h4 class="blog-item-title">សម្លាញ់អើយគ្នាខូចចិត្តហើយ</h4>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Blog Post 2 -->
-                        
-                        <!-- Blog Post 3 -->
-                        <div class="item">
-                          <div class="blog-card">
-                            <div class="media-block">
-                             
-                              <a href="single-blog.html">
-                                <img src="./img/blog/C.png" alt="អរគុណសម្រាប់ចាកចេញ" title="" />
-                                <div class="mask"></div>
-                              </a>
-                            </div>
-                            <div class="post-info">
-                              <div class="post-date">04 Dec 2019</div>
-                              <a href="blog-post-1.html">
-                                <h4 class="blog-item-title">អរគុណសម្រាប់ចាកចេញ</h4>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Blog Post 3 -->
 
-                        <!-- Blog Post 4 -->
-                        <div class="item">
-                          <div class="blog-card">
-                            <div class="media-block">
-                             
-                              <a href="single-blog.html">
-                                <img src="./img/blog/D.png" alt="សុំទោសដែលចាក់ចេញ" title="" />
-                                <div class="mask"></div>
-                              </a>
-                            </div>
-                            <div class="post-info">
-                              <div class="post-date">04 Dec 2019</div>
-                              <a href="">
-                                <h4 class="blog-item-title">សុំទោសដែលចាក់ចេញ </h4>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Blog Post 4 -->
+<!-- Blog Post 1 -->
+<div class="item">
+  <div class="blog-card">
+
+    <div class="media-block">
+      <img src="./img/blog/A.png" alt="ស្នេហ៍ពិត">
+
+      <!-- Play Button -->
+      <button class="play-btn" onclick="playMusic('music1', this)">
+        ▶
+      </button>
+
+      <audio id="music1">
+        <source src="./music/Sne Pit  Serriwan Song.wav" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="post-info">
+      <div class="post-date">04 Dec 2019</div>
+      <h4 class="blog-item-title">ស្នេហ៍ពិត</h4>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Blog Post 2 -->
+<div class="item">
+  <div class="blog-card">
+
+    <div class="media-block">
+      <img src="./img/blog/B.png" alt="សម្លាញ់អើយគ្នាខូចចិត្តហើយ">
+
+      <!-- Play Button -->
+      <button class="play-btn" onclick="playMusic('music2', this)">
+        ▶
+      </button>
+
+      <audio id="music2">
+        <source src="./music/Som lanh Knea joj jit hz Hor Song.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="post-info">
+      <div class="post-date">04 Dec 2019</div>
+      <h4 class="blog-item-title">សម្លាញ់អើយគ្នាខូចចិត្តហើយ</h4>
+    </div>
+
+  </div>
+</div>
                         
-                        <!-- Blog Post 5 -->
-                        <div class="item">
-                          <div class="blog-card">
-                            <div class="media-block">
-                              
-                              <a href="single-blog.html">
-                                <img src="./img/blog/F.png" alt="កាត់ចិត្ត" title="" />
-                                <div class="mask"></div>
-                              </a>
-                            </div>
-                            <div class="post-info">
-                              <div class="post-date">04 Dec 2019</div>
-                              <a href="blog-post-1.html">
-                                <h4 class="blog-item-title">កាត់ចិត្ត</h4>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Blog Post 5 -->
-                        
-                        <!-- Blog Post 6 -->
-                        <div class="item">
-                          <div class="blog-card">
-                            <div class="media-block">
-                              
-                              <a href="single-blog.html">
-                                <img src="./img/blog/G.png" alt="ឪកាសចុងក្រោយ" title="" />
-                                <div class="mask"></div>
-                              </a>
-                            </div>
-                            <div class="post-info">
-                              <div class="post-date">04 Dec 2019</div>
-                              <a href="blog-post-1.html">
-                                <h4 class="blog-item-title">ឪកាសចុងក្រោយ</h4>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Blog Post 6 -->
+                     <!-- Blog Post 3 -->
+<div class="item">
+  <div class="blog-card">
+    <div class="media-block">
+      <img src="./img/blog/C.png" alt="អរគុណសម្រាប់ចាកចេញ">
+
+      <button class="play-btn" onclick="playMusic('music3', this)">
+        ▶
+      </button>
+
+      <audio id="music3">
+        <source src="./music/Arn Chor Chak Chinh.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="post-info">
+      <div class="post-date">04 Dec 2019</div>
+      <h4 class="blog-item-title">អរគុណសម្រាប់ចាកចេញ</h4>
+    </div>
+  </div>
+</div>
+<!-- End Blog Post 3 -->
+
+
+<!-- Blog Post 4 -->
+<div class="item">
+  <div class="blog-card">
+    <div class="media-block">
+      <img src="./img/blog/D.png" alt="សុំទោសដែលចាកចេញ">
+
+      <button class="play-btn" onclick="playMusic('music4', this)">
+        ▶
+      </button>
+
+      <audio id="music4">
+        <source src="./music/Sorry For Leaving Serriwan Song.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="post-info">
+      <div class="post-date">04 Dec 2019</div>
+      <h4 class="blog-item-title">សុំទោសដែលចាកចេញ</h4>
+    </div>
+  </div>
+</div>
+<!-- End Blog Post 4 -->
+
+
+<!-- Blog Post 5 -->
+<div class="item">
+  <div class="blog-card">
+    <div class="media-block">
+      <img src="./img/blog/F.png" alt="កាត់ចិត្ត">
+
+      <button class="play-btn" onclick="playMusic('music5', this)">
+        ▶
+      </button>
+
+      <audio id="music5">
+        <source src="./music/Kat Jit Timo Song.wav" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="post-info">
+      <div class="post-date">04 Dec 2019</div>
+      <h4 class="blog-item-title">កាត់ចិត្ត</h4>
+    </div>
+  </div>
+</div>
+<!-- End Blog Post 5 -->
+
+
+<!-- Blog Post 6 -->
+<div class="item">
+  <div class="blog-card">
+    <div class="media-block">
+      <img src="./img/blog/G.png" alt="ឱកាសចុងក្រោយ">
+
+      <button class="play-btn" onclick="playMusic('music6', this)">
+        ▶
+      </button>
+
+      <audio id="music6">
+        <source src="./music/song6.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="post-info">
+      <div class="post-date">04 Dec 2019</div>
+      <h4 class="blog-item-title">ឱកាសចុងក្រោយ</h4>
+    </div>
+  </div>
+</div>
+<!-- End Blog Post 6 -->
                       </div>
 
                       <a class="btn btn-primary" href="#">See All Posts</a>
@@ -420,6 +447,42 @@
     </div>
     <!-- /Page Wrapper -->
 
+
+    <script>
+let currentAudio = null;
+let currentButton = null;
+
+function playMusic(id, btn){
+
+    const audio = document.getElementById(id);
+
+    // Stop previous audio
+    if(currentAudio && currentAudio !== audio){
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+
+        if(currentButton){
+            currentButton.innerHTML = "▶";
+        }
+    }
+
+    if(audio.paused){
+        audio.play();
+        btn.innerHTML = "⏸";
+
+        currentAudio = audio;
+        currentButton = btn;
+    }else{
+        audio.pause();
+        btn.innerHTML = "▶";
+    }
+
+    audio.onended = function(){
+        btn.innerHTML = "▶";
+    };
+}
+</script>
+
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
@@ -435,7 +498,20 @@
 
    
 
+<style>
+
+  .media-block{
+    position:relative;
+}
+
+.play-btn{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
 
 
+  </style>
   </body>
 </html>
