@@ -363,16 +363,43 @@
               <div class="page-title">
                 <h1>Contact</h1>
               </div>
+              
+              <div class="">
+
+<div class="team">
+
+<button class="btn prev">&#10094;</button>
+
+<div class="card left2"><img></div>
+<div class="card left"><img></div>
+<div class="card active"><img></div>
+<div class="card right"><img></div>
+<div class="card right2"><img></div>
+
+<button class="btn next">&#10095;</button>
+
+</div>
+
+<div class="info">
+<h2></h2>
+<p></p>
+</div>
+
+<div class="dots"></div>
+
+</div>
+<br/>
 
               <article class="page type-page">
                 <div class="entry-content">
-                  <div class="row">
+                  
+                  <!-- <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="lmpixels-map">
                         <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row">
                     <div class=" col-xs-12 col-sm-4 ">
@@ -386,7 +413,7 @@
                     <div class=" col-xs-12 col-sm-4 ">
                       <div class="lm-info-block gray-default" onclick="handlePhoneClick('0715347374');">
                         <i class="lnr lnr-phone-handset"></i>
-                        <h4> 0715 347 374 </h4>
+                        <h4> 0715 347 374 || 069 347 374</h4>
                         <span class="lm-info-block-text"></span>
                       </div>
                     </div>
@@ -452,7 +479,7 @@
                         </div>
                       </form> -->
 
-                      <div class="contact-card">
+                      <!-- <div class="contact-card">
                         <h2>How Can I Help You?</h2>
                         
                         <form id="contactForm" action="https://formspree.io/f/xpqoakdp" method="POST" novalidate>
@@ -486,7 +513,7 @@
                         </form>
                     </div>
 
-                    </div>
+                    </div> -->
 
 
                   </div>
@@ -561,7 +588,382 @@
 
     </script>
 
+<style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#091322,#13294b,#071221);
+overflow:hidden;
+}
+
+.container{
+width:1150px;
+max-width:95%;
+background:#fff;
+border-radius:30px;
+padding:50px;
+box-shadow:0 25px 70px rgba(0,0,0,.35);
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.container::before{
+content:"";
+position:absolute;
+width:350px;
+height:350px;
+background:#4b6fe8;
+filter:blur(130px);
+opacity:.25;
+left:-100px;
+top:-100px;
+}
+
+.container::after{
+content:"";
+position:absolute;
+width:300px;
+height:300px;
+background:#00c6ff;
+filter:blur(120px);
+opacity:.2;
+right:-100px;
+bottom:-100px;
+}
+
+
+.team{
+position:relative;
+height:350px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.card{
+position:absolute;
+width:210px;
+height:280px;
+border-radius:20px;
+overflow:hidden;
+transition:.6s ease;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+cursor:pointer;
+background:#ddd;
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.card:hover img{
+transform:scale(1.08);
+}
+
+.left2{
+left:8%;
+transform:scale(.75);
+opacity:.25;
+filter:grayscale(100%);
+}
+
+.left{
+left:24%;
+transform:scale(.9);
+opacity:.55;
+filter:grayscale(70%);
+}
+
+.active{
+left:50%;
+transform:translateX(-50%) scale(1.15);
+z-index:10;
+opacity:1;
+filter:none;
+}
+
+.right{
+right:24%;
+transform:scale(.9);
+opacity:.55;
+filter:grayscale(70%);
+}
+
+.right2{
+right:8%;
+transform:scale(.75);
+opacity:.25;
+filter:grayscale(100%);
+}
+
+.info{
+margin-top:25px;
+}
+
+.info h2{
+font-size:36px;
+color:#2147b8;
+margin-bottom:10px;
+}
+
+.info p{
+font-size:18px;
+color:#777;
+letter-spacing:3px;
+}
+
+.btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#2147b8;
+color:#fff;
+font-size:22px;
+cursor:pointer;
+transition:.3s;
+z-index:20;
+}
+
+.btn:hover{
+background:#4b6fe8;
+transform:translateY(-50%) scale(1.1);
+}
+
+.prev{
+left:0;
+}
+
+.next{
+right:0;
+}
+
+.dots{
+display:flex;
+justify-content:center;
+margin-top:30px;
+gap:12px;
+}
+
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#ccc;
+cursor:pointer;
+transition:.3s;
+}
+
+.dot.activeDot{
+background:#2147b8;
+transform:scale(1.4);
+}
+
+@media(max-width:900px){
+
+.card{
+width:160px;
+height:220px;
+}
+
+.left2{left:-20px;}
+.left{left:12%;}
+.right{right:12%;}
+.right2{right:-20px;}
+
+}
+
+@media(max-width:650px){
+
+.container{
+padding:30px 15px;
+}
+
+.team{
+height:260px;
+}
+
+.left2,.right2{
+display:none;
+}
+
+.left{
+left:10%;
+}
+
+.right{
+right:10%;
+}
+
+.card{
+width:120px;
+height:170px;
+}
+
+.active{
+transform:translateX(-50%) scale(1.1);
+}
+
+h1{
+font-size:35px;
+}
+
+.info h2{
+font-size:28px;
+}
+
+}
+
+</style>
+<script>
+
+const members=[
+
+{
+name:"Pil Nanchhiev",
+job:"Designer",
+img:"../img/portfolio/5993.png"
+},
+
+{
+name:"John Carter",
+job:"Developer",
+img:"../img/portfolio/5976.png"
+},
+
+{
+name:"Pil Nanchhiev",
+job:"UX Designer",
+img:"../img/portfolio/8556.jpg"
+},
+
+{
+name:"Pil Nanchhiev",
+job:"Marketing",
+img:"../img/portfolio/8677.jpg"
+},
+
+{
+name:"Pil Nanchhiev",
+job:"Web Designer",
+img:"../img/portfolio/8952.jpg"
+}
+
+];
+
+let current=2;
+
+const cards=document.querySelectorAll(".card");
+const title=document.querySelector(".info h2");
+const job=document.querySelector(".info p");
+const dots=document.querySelector(".dots");
+
+members.forEach((m,i)=>{
+
+const d=document.createElement("div");
+d.className="dot";
+
+d.onclick=()=>{
+
+current=i;
+update();
+
+};
+
+dots.appendChild(d);
+
+});
+
+function update(){
+
+let total=members.length;
+
+let order=[
+
+(current-2+total)%total,
+(current-1+total)%total,
+current,
+(current+1)%total,
+(current+2)%total
+
+];
+
+cards.forEach((card,index)=>{
+
+card.querySelector("img").src=members[order[index]].img;
+
+});
+
+title.innerHTML=members[current].name;
+job.innerHTML=members[current].job;
+
+document.querySelectorAll(".dot").forEach((d,i)=>{
+
+d.classList.toggle("activeDot",i===current);
+
+});
+
+}
+
+function next(){
+
+current++;
+
+if(current>=members.length)
+current=0;
+
+update();
+
+}
+
+function prev(){
+
+current--;
+
+if(current<0)
+current=members.length-1;
+
+update();
+
+}
+
+document.querySelector(".next").onclick=next;
+document.querySelector(".prev").onclick=prev;
+
+// let auto=setInterval(next,3000);
+
+// document.querySelector(".container").addEventListener("mouseenter",()=>{
+
+// clearInterval(auto);
+
+// });
+
+// document.querySelector(".container").addEventListener("mouseleave",()=>{
+
+// auto=setInterval(next,3000);
+
+// });
+
+update();
+
+</script>
 
   </body>
 </html>
