@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Transfer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+
+body{
+    background:#f5f5f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:420px;
+    background:#fff;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#fafafa;
+    border:2px solid #eee;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+select,input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:12px;
+    background:#4285F4;
+    color:#fff;
+    font-size:17px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#e5e5e5;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:25px;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:#34A853;
+    transition:.2s;
+}
+
+.status{
+    text-align:center;
+    margin-top:15px;
+    color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>☁️ Cloud Transfer</h1>
+
+<p class="subtitle">
+Transfer files to Google Drive
+</p>
+
+<div class="card">
+
+<label>Source</label>
+
+<select>
+<option>Cloud Storage</option>
+<option>Dropbox</option>
+<option>OneDrive</option>
+<option>Box</option>
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Destination</label>
+
+<select>
+<option>Google Drive</option>
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Select File</label>
+
+<input type="file">
+
+</div>
+
+<button onclick="transfer()">
+Start Transfer
+</button>
+
+<div class="progress">
+
+<div class="bar" id="bar"></div>
+
+</div>
+
+<div class="status" id="status">
+Waiting...
+</div>
+
+</div>
+
+<script>
+function transfer(){
+
+    const fileInput = document.querySelector('input[type="file"]');
+    const status = document.getElementById("status");
+    const bar = document.getElementById("bar");
+
+    if(fileInput.files.length === 0){
+        alert("Please select a file first.");
+        return;
+    }
+
+    let progress = 0;
+
+    status.innerHTML = "Preparing download...";
+
+    const timer = setInterval(() => {
+
+        progress += 5;
+        bar.style.width = progress + "%";
+
+        if(progress >= 100){
+
+            clearInterval(timer);
+
+            const file = fileInput.files[0];
+
+            const url = URL.createObjectURL(file);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = file.name;
+
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            URL.revokeObjectURL(url);
+
+            status.innerHTML = "✅ File downloaded successfully.";
+
+        }
+
+    },100);
+
+}
+</script>
+
+</body>
+</html>
