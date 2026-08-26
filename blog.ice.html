@@ -1,0 +1,512 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <title>Chhiev - Resume / CV / vCard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Leven - Resume / CV / vCard Template" />
+    <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, portfolio" />
+    <meta name="author" content="lmpixels" />
+    <link rel="shortcut icon" href="favicon.png">
+
+
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animations.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/dlmenu.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+  </head>
+
+
+  <style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Khmer","Khmer OS",sans-serif;background:#edf5fa;color:#183447;line-height:1.75}
+a{text-decoration:none}
+img{max-width:100%;display:block}
+.page{max-width:1320px;margin:25px auto;display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 50px);background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(10,50,80,.13)}
+.sidebar{background:linear-gradient(180deg,#072a40,#0a496b);color:#fff;padding:28px 20px;position:sticky;top:0;height:100vh;max-height:100vh}
+.logo{font-size:28px;font-weight:900;color:#58d5ff;text-align:center;margin-bottom:25px}
+.profile{text-align:center;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.15)}
+.profile img{width:115px;height:115px;border-radius:50%;object-fit:cover;margin:auto;border:5px solid rgba(255,255,255,.2)}
+.profile h2{font-size:22px;margin:14px 0 2px}
+.profile p{margin:0;color:#b9d3e0;font-size:14px}
+.social{display:flex;justify-content:center;gap:9px;margin:15px 0}
+.social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold}
+.menu{list-style:none;padding:0;margin:25px 0}
+.menu a{display:block;color:#d8e9f1;padding:11px 13px;border-radius:9px;font-weight:700;margin-bottom:4px}
+.menu a:hover,.menu a.active{background:#079bd8;color:#fff}
+.side-box{background:rgba(255,255,255,.07);padding:15px;border-radius:12px;margin-top:20px;font-size:13px;color:#cce0ea}
+.content{min-width:0}
+.hero{background:linear-gradient(135deg,#e8f8ff,#fff);padding:60px 55px;display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}
+.badge{display:inline-block;background:#dff6ff;color:#0084be;border-radius:30px;padding:6px 13px;font-size:13px;font-weight:800}
+.hero h1{font-size:54px;line-height:1.15;color:#082d45;margin:18px 0}
+.hero h1 span{color:#079edb}
+.hero p{color:#647a89;font-size:17px}
+.btn{display:inline-block;border:0;border-radius:9px;padding:12px 19px;font-weight:800;cursor:pointer;margin:5px 4px 0 0}
+.primary{background:#079edb;color:#fff}
+.dark{background:#092d45;color:#fff}
+.outline{background:#fff;color:#092d45;border:1px solid #d4e4ec}
+.hero-image{position:relative}
+.hero-image img{width:100%;height:400px;object-fit:cover;border-radius:18px;box-shadow:0 20px 50px rgba(0,50,80,.18)}
+.price{position:absolute;right:12px;bottom:15px;background:#fff;border-radius:14px;padding:14px 20px;box-shadow:0 10px 30px #0002}
+.price small{display:block;color:#71818d}
+.price strong{font-size:30px;color:#079edb}
+.stats{background:#092d45;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);padding:22px 40px}
+.stat{text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.stat:last-child{border:0}.stat strong{display:block;color:#5bd6ff;font-size:27px}
+section{padding:65px 55px}
+.head{text-align:center;margin-bottom:35px}.head small{color:#079edb;font-weight:900}.head h2{font-size:37px;margin:3px 0 8px;color:#092d45}.head p{color:#718592;margin:auto;max-width:700px}
+.features{background:#fff}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{border:1px solid #e1edf2;border-radius:15px;padding:22px;background:#fff}
+.icon{font-size:31px}.feature h3{margin:5px 0}.feature p{color:#708391;font-size:14px}
+.analysis{background:#eef8fc}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:#fff;border-radius:17px;padding:25px;border:1px solid #dfebf1;box-shadow:0 8px 25px #003b5a0b}
+.card h3{margin-top:0}
+.input{margin-bottom:12px}.input label{display:block;font-size:13px;font-weight:800;margin-bottom:5px}.input input{width:100%;padding:11px;border:1px solid #cbdde6;border-radius:8px;font-size:15px}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:10px}.result{padding:14px;background:#f4fafc;border-radius:10px}.result small{color:#718592}.result strong{display:block;color:#0088c5;font-size:20px}
+.profit{margin-top:13px;background:linear-gradient(135deg,#079edb,#056a9b);color:#fff;padding:18px;border-radius:12px}.profit strong{display:block;font-size:31px}
+.table-wrap{overflow-x:auto}.table{width:100%;border-collapse:collapse;background:#fff;min-width:760px;border-radius:12px;overflow:hidden}.table th{background:#092d45;color:#fff;padding:13px}.table td{padding:12px;text-align:center;border-bottom:1px solid #e7eef2}.good{font-weight:900;color:#0088c5}
+.process{background:#fff}.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.step{text-align:center;padding:22px;border:1px solid #e0ebf1;border-radius:14px}.num{width:44px;height:44px;border-radius:50%;background:#079edb;color:#fff;margin:auto;display:flex;align-items:center;justify-content:center;font-weight:900}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.brand-card{padding:28px;border-radius:18px;background:linear-gradient(135deg,#e8f8ff,#fff);border:1px solid #cfeaf5}.brand-card blockquote{font-size:25px;color:#079edb;font-weight:900;margin:15px 0}.brand-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.brand-item{padding:15px;background:#fff;border:1px solid #e2edf2;border-radius:10px;font-weight:700}
+.cta{background:linear-gradient(135deg,#079edb,#056d9f);color:#fff;text-align:center}.cta h2{font-size:38px;margin:0 0 8px}.cta p{color:#e2f7ff}
+footer{background:#071d2b;color:#fff;padding:30px 55px;display:flex;justify-content:space-between;gap:20px;align-items:center}footer p{color:#91a9b7;margin:0}
+@media(max-width:950px){.page{display:block;margin:0;border-radius:0}.sidebar{position:relative;height:auto;max-height:none}.hero,.calc-grid,.brand-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.process-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr;gap:15px}.stat{border:0}.sidebar{padding:20px}.menu{display:grid;grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.hero,section{padding:42px 20px}.hero h1{font-size:40px}.feature-grid,.process-grid,.brand-list,.results{grid-template-columns:1fr}.stats{padding:18px 20px}.hero-image img{height:280px}footer{padding:25px 20px;display:block}}
+</style>
+
+  <body>
+
+    <div class="lm-animated-bg"></div>
+    
+    <!-- Loading animation -->
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner">
+        </div>
+      </div>
+    </div>
+    <!-- /Loading animation -->
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper bg-move-effect">
+      <div class="page-content site-content">
+
+        <!-- Site Header -->
+        <header id="site_header" class="header">
+          <div class="header-content">
+            <!-- Menu Button Icon -->
+            <div class="menu-button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <!-- /Menu Button Icon -->
+                
+            <!-- Personal Photo or Site Logo -->
+            <!--<div class="header-photo">
+              <a href="index.html">
+                <img src="./img/profile_img.jpg" alt="image">
+              </a>
+            </div>-->
+            <!-- /Personal Photo or Site Logo -->
+
+            <!-- Text Logo -->
+            <div class="header-titles">
+              <a href="index.html">
+                <h2>AS</h2>
+              </a>
+            </div>
+            <!-- Text Logo -->
+          </div>
+          
+          <!-- Site Main Menu & Profile Card -->
+          <div class="site-menu profile-card-on flex-v-align dl-menuwrapper">
+            <!-- Profile Card -->
+            <div class="profile-card flex-v-align">
+              <div class="profile-card-block">
+                <!-- Profile Photo -->
+                <div class="profile-img">
+                  <a href="#">
+                    <img src="./img/chhiev.jpg" alt="image">
+                  </a>
+                </div>
+                <!-- /Profile Photo -->
+                
+                <!-- Profile Titles -->
+                <a href="#">
+                  <h3 class="site-title">Nanchhiev Pil</h3>
+                </a>
+                            
+                <h5 class="site-subtitle">Web Designer </h5>
+                <!-- /Profile Titles -->
+                
+                <!-- Social Links -->
+                <div class="social-links">
+                  <ul>
+                    <li>
+                      <a href="https://t.me/pilnanchhiev" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank" ><h5>TK</h5>
+                        <i class="fa-brands fa-tiktok"></i>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+                <!-- /Social Links -->
+              </div>
+            </div>
+            <!-- /Profile Card -->
+
+            <!-- Main Menu -->
+            <ul class="alan-classic-menu main-menu dl-menu dl-menuopen">
+              <li class="menu-item menu-item-has-children">
+                <a href="index.html">About Me</a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="https://nanchhievpil.github.io/NhimHorMusic/">Click Musics</a> 
+                 
+                  </li>  
+                </ul>
+              </li>
+              
+              <li class="menu-item">
+                <a href="resume.html">Resume</a>
+              </li>
+
+              <li class="menu-item current-menu-item">
+                <a href="portfolio.html">Portfolio</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="blog.html">Blog</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="portfolio-project-1.html">Video</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="portfolio-project-2.html">Books</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="portfolio-project-3.html">Courese</a>
+              </li>
+
+              <li class="menu-item">
+                <a href="artwork.html">Artwork</a>
+              </li>
+              
+              <li class="menu-item">
+                <a href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <!-- /Main Menu -->
+          </div>
+          <!-- /Site Main Menu & Profile Card -->
+        </header>
+        <!-- /Site Header -->
+
+        <!-- Right Sidebar -->
+        <div class="r-sidebar">
+          <div class="sidebar-button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        
+        <div id="blog-sidebar" class="blog-sidebar">
+          <div class="blog-sidebar-content clearfix">
+            <div class="sidebar-item">
+              <div class="sidebar-title">
+                <h4>Recent Posts</h4>
+              </div>
+              <ul>
+                <li>
+                  <a href="#">Best Practices for Animated Progress Indicators</a>
+                </li>
+                
+                <li>
+                  <a href="#">Designing the Perfect Feature Comparison Table</a>
+                </li>
+                
+                <li>
+                  <a href="#">An Overview of E-Commerce Platforms</a>
+                </li>
+                
+                <li>
+                  <a href="#">Why I Switched to Sketch For UI Design</a>
+                </li>
+                
+                <li>
+                  <a href="#">Creative and Innovative Navigation Designs</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-item"><div class="sidebar-title"><h4>Archives</h4></div>
+              <ul>
+                <li>
+                  <a href='#'>June 2020</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-item">
+              <div class="sidebar-title">
+                <h4>Categories</h4>
+              </div>
+              
+              <ul>
+                <li class="cat-item">
+                  <a href="#">Design</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">E-Commerce</a>
+                </li>
+
+                <li class="cat-item">
+                  <a href="#">UI</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">Uncategorized</a>
+                </li>
+                
+                <li class="cat-item">
+                  <a href="#">WordPress</a>
+                </li>
+              </ul>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- /Right Sidebar -->
+
+        <!-- Page Content -->
+        <div class="content-area single-page-area" data-animation="animated-section-rotateRoomBottomIn">
+          <div class="single-page-content">
+            <div class="content-wrapper">
+              <article class="post">
+
+                
+
+                  <div class="post-content">
+                    <div class="entry-content">
+
+
+<main class="content">
+
+<section class="hero" id="home">
+<div>
+<span class="badge">24/7 SELF-SERVICE ICE VENDING MACHINE</span>
+<h1>ម៉ាស៊ីនលក់ទឹកកក <span>24 ម៉ោង</span></h1>
+<p>ទឹកកកស្អាត • សុវត្ថិភាព • ងាយស្រួល • បង់ប្រាក់តាម QR។ ផលិតបានរហូតដល់ <strong>180kg ក្នុងមួយថ្ងៃ</strong>។</p>
+<a class="btn primary" href="#analysis">📊 មើលវិភាគចំណេញ</a>
+<a class="btn outline" href="#process">🔄 របៀបទិញ</a>
+</div>
+<div class="hero-image">
+<img src="./img/testimonials/ice.jpg" alt="Ice Vending Machine">
+<div class="price"><small>តម្លៃលក់</small><strong>$3,999</strong><small>តម្លៃដើម $4,500</small></div>
+</div>
+</section>
+
+<div class="stats">
+<div class="stat"><strong>180kg</strong>ផលិត / ថ្ងៃ</div>
+<div class="stat"><strong>500៛</strong>តម្លៃ / kg</div>
+<div class="stat"><strong>90,000៛</strong>ចំណូល / ថ្ងៃ</div>
+<div class="stat"><strong>2.7M៛</strong>ចំណូល / ខែ</div>
+</div>
+
+<section class="features" id="features">
+<div class="head"><small>WHY ICE 24?</small><h2>អត្ថប្រយោជន៍សំខាន់</h2><p>អាជីវកម្មស្វ័យប្រវត្តិ ងាយគ្រប់គ្រង និងបើកដំណើរការ 24 ម៉ោង។</p></div>
+<div class="feature-grid">
+<div class="feature"><div class="icon">🕐</div><h3>បើក 24 ម៉ោង</h3><p>អតិថិជនអាចទិញទឹកកកបានគ្រប់ពេល ទាំងថ្ងៃ និងយប់។</p></div>
+<div class="feature"><div class="icon">🧊</div><h3>ទឹកកកស្អាត</h3><p>គ្រប់គ្រងគុណភាពទឹក និងអនាម័យក្នុងដំណើរការផលិត។</p></div>
+<div class="feature"><div class="icon">📱</div><h3>បង់ប្រាក់ QR</h3><p>អតិថិជនអាចស្កេន QR និងទូទាត់បានយ៉ាងងាយស្រួល។</p></div>
+<div class="feature"><div class="icon">💰</div><h3>ឱកាសរកចំណូល</h3><p>ដំណើរការស្វ័យប្រវត្តិ កាត់បន្ថយការពឹងផ្អែកលើបុគ្គលិក។</p></div>
+<div class="feature"><div class="icon">💧</div><h3>ប្រព័ន្ធទឹក</h3><p>អាចភ្ជាប់ប្រព័ន្ធចម្រោះទឹក ដើម្បីគ្រប់គ្រងគុណភាពទឹក។</p></div>
+<div class="feature"><div class="icon">🏪</div><h3>ទីតាំងជាច្រើន</h3><p>សាកសមសម្រាប់ផ្សារ ហាង តំបន់ពាណិជ្ជកម្ម និងតំបន់មានមនុស្សច្រើន។</p></div>
+</div>
+</section>
+
+<section class="analysis" id="analysis">
+<div class="head"><small>BUSINESS ANALYSIS</small><h2>វិភាគប្រាក់ចំណេញ</h2><p>អាចកែតម្លៃក្នុង Calculator ដើម្បីមើល Scenario ផ្សេងៗ។</p></div>
+<div class="calc-grid">
+<div class="card">
+<h3>🧮 ទិន្នន័យគណនា</h3>
+<div class="input"><label>ផលិត/លក់ក្នុងមួយថ្ងៃ (kg)</label><input id="kg" type="number" value="180"></div>
+<div class="input"><label>តម្លៃលក់ / kg (៛)</label><input id="price" type="number" value="500"></div>
+<div class="input"><label>ភ្លើង / ថ្ងៃ (kWh)</label><input id="electric" type="number" value="20"></div>
+<div class="input"><label>តម្លៃភ្លើង / kWh (៛)</label><input id="electricPrice" type="number" value="730"></div>
+<div class="input"><label>ទឹក / ថ្ងៃ (Liter)</label><input id="water" type="number" value="300"></div>
+<div class="input"><label>តម្លៃទឹក / m³ (៛)</label><input id="waterPrice" type="number" value="2000"></div>
+<div class="input"><label>តម្លៃម៉ាស៊ីន ($)</label><input id="machine" type="number" value="3999"></div>
+<button class="btn primary" style="width:100%" onclick="calculate()">📊 គណនា</button>
+</div>
+
+<div class="card">
+<h3>📈 លទ្ធផល</h3>
+<div class="results">
+<div class="result"><small>ចំណូល / ថ្ងៃ</small><strong id="daily">90,000៛</strong></div>
+<div class="result"><small>ចំណូល / ខែ</small><strong id="monthly">2,700,000៛</strong></div>
+<div class="result"><small>ភ្លើង / ខែ</small><strong id="electricResult">438,000៛</strong></div>
+<div class="result"><small>ទឹក / ខែ</small><strong id="waterResult">18,000៛</strong></div>
+<div class="result"><small>ចំណេញ / ថ្ងៃ</small><strong id="dailyProfit">74,800៛</strong></div>
+<div class="result"><small>ចំណេញ / ខែ</small><strong id="profitResult">2,244,000៛</strong></div>
+</div>
+<div class="profit"><small>Payback ប្រហែល</small><strong id="payback">7.3 ខែ</strong><div style="font-size:12px">គណនាតាម $1 = 4,100៛ និងមិនទាន់រាប់ជួលទីតាំង/ថែទាំ។</div></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="head"><small>SALES SCENARIO</small><h2>Scenario 50% - 100%</h2></div>
+<div class="table-wrap">
+<table class="table">
+<thead><tr><th>ការលក់</th><th>kg/ថ្ងៃ</th><th>ចំណូល/ថ្ងៃ</th><th>ចំណូល/ខែ</th><th>ភ្លើង/ខែ</th><th>ទឹក/ខែ</th><th>សល់/ខែ*</th></tr></thead>
+<tbody>
+<tr><td>50%</td><td>90</td><td>45,000៛</td><td>1,350,000៛</td><td>438,000៛</td><td>18,000៛</td><td class="good">894,000៛</td></tr>
+<tr><td>70%</td><td>126</td><td>63,000៛</td><td>1,890,000៛</td><td>438,000៛</td><td>18,000៛</td><td class="good">1,434,000៛</td></tr>
+<tr><td>80%</td><td>144</td><td>72,000៛</td><td>2,160,000៛</td><td>438,000៛</td><td>18,000៛</td><td class="good">1,704,000៛</td></tr>
+<tr><td><strong>100%</strong></td><td><strong>180</strong></td><td><strong>90,000៛</strong></td><td><strong>2,700,000៛</strong></td><td><strong>438,000៛</strong></td><td><strong>18,000៛</strong></td><td class="good"><strong>2,244,000៛</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p style="font-size:12px;color:#718592">* Scenario គំរូ: ភ្លើង 20kWh/ថ្ងៃ និងទឹក 300L/ថ្ងៃ។ មិនទាន់រាប់ Maintenance, Filter, ជួលទីតាំង និងថ្លៃសេវាបង់ប្រាក់។</p>
+</section>
+
+<section class="process" id="process">
+<div class="head"><small>HOW IT WORKS</small><h2>របៀបទិញទឹកកក</h2><p>ងាយស្រួលត្រឹមតែ 4 ជំហាន។</p></div>
+<div class="process-grid">
+<div class="step"><div class="num">01</div><h3>ជ្រើសរើស</h3><p>ជ្រើសរើសបរិមាណទឹកកកដែលត្រូវការ។</p></div>
+<div class="step"><div class="num">02</div><h3>ស្កេន QR</h3><p>ស្កេន QR Code និងធ្វើការទូទាត់។</p></div>
+<div class="step"><div class="num">03</div><h3>ម៉ាស៊ីនដំណើរការ</h3><p>ប្រព័ន្ធស្វ័យប្រវត្តិរៀបចំទឹកកក។</p></div>
+<div class="step"><div class="num">04</div><h3>ទទួលទឹកកក</h3><p>ទទួលបានភ្លាមៗ រហ័ស និងងាយស្រួល។</p></div>
+</div>
+</section>
+
+<section id="branding">
+<div class="head"><small>BRANDING</small><h2>ICE 24 Brand</h2><p>សារសំខាន់សម្រាប់ Poster, Facebook និង Website។</p></div>
+<div class="brand-grid">
+<div class="brand-card">
+<h2>🧊 ICE 24</h2>
+<blockquote>“ទឹកកកស្អាត • ត្រជាក់ថ្មី • មានគ្រប់ពេល”</blockquote>
+<p><strong>24/7 Self-Service Ice Vending Machine</strong></p>
+</div>
+<div class="brand-list">
+<div class="brand-item">🧊 ទឹកកកស្អាត និងអនាម័យ</div>
+<div class="brand-item">⚡ សេវា 24 ម៉ោង</div>
+<div class="brand-item">📱 បង់ប្រាក់ QR</div>
+<div class="brand-item">💧 ប្រព័ន្ធចម្រោះទឹក</div>
+<div class="brand-item">🏪 សាកសមសម្រាប់អាជីវកម្ម</div>
+<div class="brand-item">💰 ឱកាសបង្កើតចំណូល</div>
+</div>
+</div>
+</section>
+                    <div class="post-tags">
+                      <span class="tags">
+                        <a href="https://t.me/pilnanchhiev" rel="tag">Telegram</a>
+                        <a href="https://www.facebook.com/pil.nanchhiev.7/" rel="tag"> Facebook </a>
+                        <a href="#" rel="tag">Youtube</a>
+                      </span>
+                    </div>
+                  </div>
+                </article>
+            </div>
+          </div>
+
+          <!-- /Footer -->
+          <footer class="site-footer clearfix">
+            <div class="footer-social">
+              <ul class="footer-social-links">
+                <li>
+                  <a href="https://t.me/pilnanchhiev" target="_blank">Telegram</a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">Facebook</a>
+                </li>
+                <li>
+                  <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank">Tiktok</a>
+                </li>
+              </ul>
+            </div>
+        
+            <div class="footer-copyrights">
+              <p>© 2024 All rights reserved.</p>
+            </div>
+          </footer>
+          <!-- /Footer -->
+        </div>
+        <!-- /Page Content -->
+      </div>
+    </div>
+    <!-- /Page Wrapper -->
+<script>
+function fmt(n){return Math.round(n).toLocaleString("en-US")+"៛";}
+function calculate(){
+ const kg=+document.getElementById("kg").value||0;
+ const price=+document.getElementById("price").value||0;
+ const electric=+document.getElementById("electric").value||0;
+ const electricPrice=+document.getElementById("electricPrice").value||0;
+ const water=+document.getElementById("water").value||0;
+ const waterPrice=+document.getElementById("waterPrice").value||0;
+ const machine=+document.getElementById("machine").value||3999;
+ const daily=kg*price;
+ const monthly=daily*30;
+ const elec=monthly*0 + electric*electricPrice*30;
+ const waterCost=(water/1000)*waterPrice*30;
+ const dailyProfit=daily-(electric*electricPrice)-(water/1000*waterPrice);
+ const profit=monthly-elec-waterCost;
+ const payback=profit>0?(machine*4100/profit):0;
+ document.getElementById("daily").textContent=fmt(daily);
+ document.getElementById("monthly").textContent=fmt(monthly);
+ document.getElementById("electricResult").textContent=fmt(elec);
+ document.getElementById("waterResult").textContent=fmt(waterCost);
+ document.getElementById("dailyProfit").textContent=fmt(dailyProfit);
+ document.getElementById("profitResult").textContent=fmt(profit);
+ document.getElementById("payback").textContent=payback?payback.toFixed(1)+" ខែ":"—";
+}
+calculate();
+</script>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/jquery.shuffle.min.js'></script>
+    <script src='js/masonry.pkgd.min.js'></script>
+    <script src='js/owl.carousel.min.js'></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.dlmenu.js"></script>
+    <script src="js/validator.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

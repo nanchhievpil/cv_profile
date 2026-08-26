@@ -9,8 +9,7 @@
     <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, portfolio" />
     <meta name="author" content="lmpixels" />
     <link rel="shortcut icon" href="favicon.png">
-
-
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="css/normalize.css" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/animations.css" type="text/css">
@@ -21,6 +20,22 @@
   </head>
 
   <body>
+
+
+    <script>
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+    console.log("Telegram Mini App is ready");
+
+    if (tg.initDataUnsafe.user) {
+        console.log("Telegram User:", tg.initDataUnsafe.user);
+    }
+</script>
+
+
 
     <div class="lm-animated-bg"></div>
     
@@ -400,6 +415,33 @@
                     <div id="testimonials_be6bf74" class="testimonials owl-carousel loop-off autoplay-off" data-mobile-items="1" data-tablet-items="2" data-items="2">
 
 
+ <div class="testimonial testimonial-item">
+                        <div class="testimonial-content">
+                          <div class="testimonial-picture">
+                            <img src="./img/testimonials/7.png" alt="Robert Watkins"/>
+                          </div>
+
+                          <div class="testimonial-text">
+                            <p>
+                              ដែលអាចបម្រើអតិថិជនបាន 24 ម៉ោងក្នុងមួយថ្ងៃ ដោយមិនចាំបាច់មានបុគ្គលិកប្រចាំការ។ ម៉ាស៊ីនអាចផលិតទឹកកកបានរហូតដល់ 180kg/ថ្ងៃ និងអាចកំណត់ប្រព័ន្ធទូទាត់តាម QR Code ដើម្បីឱ្យអតិថិជនទិញបានយ៉ាងងាយស្រួល។</p>
+                          </div>
+
+                          <div class="testimonial-author-info">
+                            <h5 class="testimonial-author">ទទួលបានចំណូលប្រចាំថ្ងៃ ពេញមួយជីវិត្ត</h5>
+                            <p class="testimonial-firm">
+                              <a href="blog.ice.html"   target="_self" >មើលពត៌មានលម្អិត</a>
+                            </p>
+                          </div>
+
+                          <div class="testimonial-icon">
+                            <i class="fa fa-quote-left"></i>
+                          </div>
+
+                          <div class="testimonial-icon-big">
+                              <i class="fa fa-quote-right"></i>
+                          </div>
+                        </div>
+                      </div>
 
 
 
