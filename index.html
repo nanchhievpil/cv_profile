@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#229ED9" />
+  <meta name="description" content="Chhiev Profile Mini App" />
 
   <title>Chhiev Profile</title>
 
@@ -13,20 +13,42 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
-    :root {
-      --bg: #f2f7fc;
-      --card: rgba(255, 255, 255, 0.94);
-      --text: #13213a;
-      --muted: #71809a;
-      --border: rgba(255, 255, 255, 0.9);
-      --blue: #1688e8;
-      --blue-dark: #0876d1;
-      --shadow: 0 8px 25px rgba(31, 78, 121, 0.08);
-    }
+    /* ========================================
+       RESET & VARIABLES
+    ======================================== */
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --primary: #229ed9;
+      --primary-dark: #147fba;
+      --primary-light: #e5f4ff;
+
+      --bg: #f4f8fc;
+      --card: #ffffff;
+      --text: #17212b;
+      --muted: #7b8794;
+      --border: #e6edf3;
+
+      --success: #16a34a;
+      --shadow: 0 8px 28px rgba(30, 80, 120, 0.07);
+
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    body.dark {
+      --bg: #101820;
+      --card: #1a2834;
+      --text: #f5f7fa;
+      --muted: #a6b4c1;
+      --border: #2c3d4b;
+      --primary-light: #203d50;
+      --shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
     }
 
     html {
@@ -34,8 +56,6 @@
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -43,377 +63,397 @@
         Roboto,
         Arial,
         sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 0% 0%, #e6f3ff 0, transparent 30%),
-        radial-gradient(circle at 100% 10%, #eaf1ff 0, transparent 30%),
-        var(--bg);
-    }
 
-    button,
-    a {
-      font: inherit;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
     }
 
     button {
+      font-family: inherit;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========================================
+       APP CONTAINER
+    ======================================== */
 
     .app {
       width: 100%;
-      max-width: 760px;
+      max-width: 680px;
       min-height: 100vh;
       margin: 0 auto;
-      padding: 18px 16px 35px;
+      padding-bottom: 24px;
     }
 
-    /* Mini App Header */
-    .mini-header {
+    /* ========================================
+       HEADER
+    ======================================== */
+
+    .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
-      padding: 4px 4px 0;
+      padding: 18px 18px 14px;
     }
 
-    .header-title {
-      flex: 1;
-      text-align: center;
-    }
-
-    .header-title h1 {
-      margin: 0;
-      font-size: 21px;
-      font-weight: 750;
-      letter-spacing: -0.5px;
-    }
-
-    .header-title p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .header-button {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border: 0;
-      border-radius: 50%;
-      color: var(--blue);
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: var(--shadow);
-      font-size: 20px;
-    }
-
-    .header-spacer {
-      width: 40px;
-    }
-
-    /* Hero */
-    .hero {
-      position: relative;
-      overflow: hidden;
+    .brand {
       display: flex;
       align-items: center;
-      gap: 18px;
-      min-height: 205px;
-      padding: 25px 22px;
-      border-radius: 30px;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(135deg, #35b9f0, #147fba);
       color: white;
+
+      font-size: 15px;
+      font-weight: 800;
+
+      box-shadow: 0 5px 15px rgba(34, 158, 217, 0.25);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Replace CP with your profile image if needed */
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand h1 {
+      font-size: 19px;
+      font-weight: 750;
+      letter-spacing: -0.4px;
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: var(--card);
+      color: var(--text);
+
+      font-size: 18px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .hero {
+      position: relative;
+      margin: 8px 16px 28px;
+      padding: 28px 23px;
+
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+
+      color: white;
+
       background:
-        radial-gradient(circle at 90% 0%, rgba(255,255,255,0.18), transparent 35%),
-        radial-gradient(circle at 10% 100%, rgba(255,255,255,0.13), transparent 30%),
-        linear-gradient(135deg, #1599ee, #338fd6 60%, #4eafe8);
-      box-shadow: 0 14px 35px rgba(19, 139, 225, 0.2);
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(255, 255, 255, 0.22),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 0% 100%,
+          rgba(255, 255, 255, 0.08),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #2bb5ed 0%,
+          #168ac0 55%,
+          #126ba3 100%
+        );
+
+      box-shadow: 0 12px 30px rgba(34, 158, 217, 0.2);
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      width: 230px;
-      height: 230px;
-      right: -100px;
-      top: -110px;
-      border: 1px solid rgba(255,255,255,0.14);
+      width: 150px;
+      height: 150px;
+      right: -50px;
+      bottom: -65px;
+
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       box-shadow:
-        0 0 0 30px rgba(255,255,255,0.035),
-        0 0 0 65px rgba(255,255,255,0.025);
-    }
-
-    .profile-image-wrap {
-      position: relative;
-      flex-shrink: 0;
-      z-index: 1;
-    }
-
-    .profile-image {
-      width: 116px;
-      height: 116px;
-      object-fit: cover;
-      border: 5px solid rgba(255,255,255,0.9);
-      border-radius: 50%;
-      background: #dceeff;
-    }
-
-    .online-dot {
-      position: absolute;
-      right: 3px;
-      bottom: 8px;
-      width: 25px;
-      height: 25px;
-      border: 4px solid white;
-      border-radius: 50%;
-      background: #20c66a;
+        0 0 0 20px rgba(255, 255, 255, 0.03),
+        0 0 0 40px rgba(255, 255, 255, 0.025);
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      min-width: 0;
     }
 
-    .hero-content h2 {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1.1;
-      font-weight: 800;
-      letter-spacing: -1px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+
+      padding: 6px 11px;
+      border-radius: 30px;
+
+      background: rgba(255, 255, 255, 0.17);
+
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
     }
 
-    .hero-content h3 {
-      margin: 8px 0 0;
-      font-size: 19px;
-      font-weight: 600;
+    .hero h2 {
+      font-size: 29px;
+      line-height: 1.15;
+      letter-spacing: -0.9px;
+      margin-bottom: 12px;
     }
 
-    .hero-content .role {
-      margin: 4px 0 0;
-      font-size: 15px;
-      color: rgba(255,255,255,0.88);
-    }
-
-    .hero-content .description {
-      margin: 16px 0 0;
-      max-width: 440px;
+    .hero p {
+      max-width: 430px;
       font-size: 14px;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.92);
+      line-height: 1.65;
+      opacity: 0.92;
+      margin-bottom: 22px;
     }
 
-    .theme-button {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      z-index: 2;
-      width: 43px;
-      height: 43px;
-      display: grid;
-      place-items: center;
-      border: 0;
-      border-radius: 50%;
-      color: white;
-      background: rgba(0, 94, 178, 0.32);
-      font-size: 20px;
+    .hero-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      max-width: 260px;
+
+      padding: 13px 16px;
+      border: none;
+      border-radius: 14px;
+
+      background: white;
+      color: #168ac0;
+
+      font-size: 14px;
+      font-weight: 750;
+
+      transition: transform 0.2s;
     }
 
-    /* Main Menu */
-    .menu-area {
-      margin-top: 25px;
+    .hero-btn:active {
+      transform: scale(0.97);
     }
+
+    .hero-btn span {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    /* ========================================
+       MAIN CONTAINER
+    ======================================== */
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      font-size: 21px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ========================================
+       MENU GRID
+    ======================================== */
 
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 15px;
+      gap: 12px;
     }
 
     .menu-card {
+      position: relative;
+
       display: flex;
-      align-items: center;
-      gap: 13px;
-      min-height: 112px;
-      padding: 15px;
+      flex-direction: column;
+      align-items: flex-start;
+
+      width: 100%;
+      min-height: 154px;
+      padding: 16px;
+
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: var(--radius-lg);
+
       background: var(--card);
+      color: var(--text);
+      text-align: left;
+
       box-shadow: var(--shadow);
+
       transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-      user-select: none;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 158, 217, 0.4);
+      box-shadow: 0 12px 28px rgba(30, 80, 120, 0.11);
     }
 
     .menu-card:active {
       transform: scale(0.97);
     }
 
-    .menu-card:hover {
-      box-shadow: 0 12px 28px rgba(31, 78, 121, 0.13);
-    }
-
     .menu-icon {
-      width: 62px;
-      height: 62px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      border-radius: 18px;
-      font-size: 31px;
-    }
+      width: 46px;
+      height: 46px;
 
-    .icon-blue {
-      background: #dceeff;
-    }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    .icon-green {
-      background: #dff8e9;
-    }
+      border-radius: 14px;
+      font-size: 22px;
 
-    .icon-orange {
-      background: #fff1d6;
-    }
-
-    .icon-purple {
-      background: #eee6ff;
-    }
-
-    .icon-pink {
-      background: #ffe5f1;
-    }
-
-    .icon-red {
-      background: #ffe2e3;
-    }
-
-    .icon-yellow {
-      background: #fff2d1;
-    }
-
-    .icon-cyan {
-      background: #def5ff;
+      margin-bottom: 18px;
     }
 
     .menu-info {
       min-width: 0;
-      flex: 1;
+      padding-right: 4px;
     }
 
     .menu-info h3 {
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.2;
+      font-size: 15px;
       font-weight: 750;
-      letter-spacing: -0.3px;
+      margin-bottom: 5px;
     }
 
     .menu-info p {
-      margin: 7px 0 0;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
+      font-size: 11px;
+      line-height: 1.45;
     }
 
-    .menu-arrow {
-      flex-shrink: 0;
-      color: #53647c;
-      font-size: 28px;
-      font-weight: 300;
+    .arrow {
+      position: absolute;
+      top: 17px;
+      right: 15px;
+
+      color: var(--muted);
+      font-size: 23px;
+      line-height: 1;
     }
 
-    /* About Me Full Width */
-    .about-card {
-      display: block;
-      min-height: auto;
-      padding: 15px;
-      margin-bottom: 15px;
+    /* ========================================
+       ABOUT ME / SUBMENU
+    ======================================== */
+
+    .about-wrapper {
+      grid-column: 1 / -1;
     }
 
-    .about-top {
-      display: flex;
+    .about-main {
+      min-height: 120px;
+      flex-direction: row;
       align-items: center;
-      gap: 13px;
+      gap: 14px;
     }
 
-    .about-top .menu-info {
+    .about-main .menu-icon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .about-main .menu-info {
       flex: 1;
     }
 
-    .about-arrow {
-      color: #53647c;
-      font-size: 23px;
-      transition: transform 0.25s ease;
+    .about-main .arrow {
+      transform: rotate(90deg);
+      transition: transform 0.25s;
     }
 
-    .about-card.open .about-arrow {
-      transform: rotate(180deg);
+    .about-main.open .arrow {
+      transform: rotate(-90deg);
     }
 
-    .about-submenu {
+    .submenu {
       display: none;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #edf1f6;
-    }
-
-    .about-card.open .about-submenu {
-      display: grid;
-    }
-
-    .sub-card {
-      display: flex;
-      align-items: center;
       gap: 10px;
-      padding: 13px;
-      border-radius: 18px;
-      background: #f7faff;
-      border: 1px solid #edf3fa;
-      transition: background 0.2s ease;
+      margin-top: 10px;
     }
 
-    .sub-card:active {
-      background: #eaf4ff;
-    }
-
-    .sub-icon {
-      width: 42px;
-      height: 42px;
+    .submenu.show {
       display: grid;
-      place-items: center;
-      border-radius: 13px;
-      font-size: 21px;
+      animation: slideDown 0.25s ease;
     }
 
-    .sub-card strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .sub-card span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    /* Pages */
-    .page {
-      display: none;
-      animation: pageIn 0.25s ease;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    @keyframes pageIn {
+    @keyframes slideDown {
       from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(-6px);
       }
       to {
         opacity: 1;
@@ -421,946 +461,637 @@
       }
     }
 
-    .page-card {
-      padding: 23px;
-      border-radius: 26px;
-      background: var(--card);
+    .sub-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      min-width: 0;
+      padding: 13px 12px;
+
       border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background: var(--card);
+      color: var(--text);
+      text-align: left;
+
       box-shadow: var(--shadow);
+      transition: transform 0.2s, border-color 0.2s;
     }
 
-    .page-heading {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      margin-bottom: 20px;
+    .sub-card:active {
+      transform: scale(0.97);
     }
 
-    .page-heading .big-icon {
-      width: 55px;
-      height: 55px;
-      display: grid;
-      place-items: center;
-      border-radius: 17px;
-      font-size: 27px;
-      background: #dceeff;
-    }
+    .sub-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 11px;
 
-    .page-heading h2 {
-      margin: 0;
-      font-size: 23px;
-    }
-
-    .page-heading p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .page-card h3 {
-      margin: 20px 0 8px;
-      font-size: 17px;
-    }
-
-    .page-card p,
-    .page-card li {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .page-card ul {
-      padding-left: 20px;
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px solid #edf1f6;
-    }
-
-    .info-row:last-child {
-      border-bottom: 0;
-    }
-
-    .info-row span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .info-row strong {
-      font-size: 14px;
-      text-align: right;
-    }
-
-    .back-button {
-      width: 100%;
-      margin-top: 17px;
-      padding: 14px;
-      border: 0;
-      border-radius: 16px;
-      color: white;
-      background: linear-gradient(135deg, #1599ee, #237fd1);
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .external-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      padding: 14px;
-      border-radius: 16px;
-      color: white;
-      background: linear-gradient(135deg, #1599ee, #237fd1);
-      text-decoration: none;
-      font-size: 14px;
+
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .sub-card h4 {
+      font-size: 13px;
       font-weight: 700;
     }
 
-    /* Footer */
-    .footer {
-      padding: 30px 10px 5px;
-      text-align: center;
+    .sub-card p {
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
+      font-size: 10px;
+      margin-top: 3px;
     }
 
-    /* Toast */
+    /* ========================================
+       CONTACT CARD
+    ======================================== */
+
+    .contact-card {
+      grid-column: 1 / -1;
+      min-height: auto;
+
+      flex-direction: row;
+      align-items: center;
+      gap: 13px;
+      padding: 15px 16px;
+    }
+
+    .contact-card .menu-icon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .contact-card .menu-info {
+      flex: 1;
+    }
+
+    /* ========================================
+       ICON COLORS
+    ======================================== */
+
+    .blue   { background: #e5f4ff; }
+    .purple { background: #f0eaff; }
+    .orange { background: #fff0df; }
+    .pink   { background: #ffe7f0; }
+    .red    { background: #ffe6e6; }
+    .green  { background: #e3f8eb; }
+    .yellow { background: #fff7d9; }
+    .cyan   { background: #e0f8ff; }
+    .teal   { background: #e0f7f4; }
+    .lime   { background: #eef8d9; }
+    .indigo { background: #e9eaff; }
+
+    body.dark .menu-icon,
+    body.dark .sub-icon {
+      filter: brightness(0.78);
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+      padding: 35px 20px 15px;
+    }
+
+    /* ========================================
+       TOAST
+    ======================================== */
+
     .toast {
       position: fixed;
       left: 50%;
       bottom: 25px;
-      z-index: 100;
-      max-width: calc(100% - 35px);
-      padding: 12px 18px;
-      border-radius: 14px;
+
+      transform: translate(-50%, 20px);
+
+      background: #17212b;
       color: white;
-      background: #172238;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+      padding: 11px 18px;
+      border-radius: 12px;
+
       font-size: 13px;
-      transform: translate(-50%, 100px);
+      white-space: nowrap;
+
       opacity: 0;
-      transition: all 0.3s ease;
       pointer-events: none;
-      text-align: center;
+
+      transition: 0.25s;
+      z-index: 100;
     }
 
     .toast.show {
-      transform: translate(-50%, 0);
       opacity: 1;
+      transform: translate(-50%, 0);
     }
 
-    /* Dark Mode */
-    body.dark {
-      --bg: #0d1522;
-      --card: rgba(24, 36, 54, 0.96);
-      --text: #f3f7ff;
-      --muted: #a6b3c8;
-      --border: rgba(255,255,255,0.05);
-      --shadow: 0 8px 25px rgba(0,0,0,0.18);
-    }
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
 
-    body.dark .header-button {
-      background: #1b2a3e;
-    }
+    @media (min-width: 500px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
 
-    body.dark .about-submenu {
-      border-color: #2c3a4d;
-    }
+      .about-wrapper {
+        grid-column: span 2;
+      }
 
-    body.dark .sub-card {
-      background: #1a2a3e;
-      border-color: #293a50;
-    }
-
-    body.dark .sub-card:active {
-      background: #223b56;
-    }
-
-    body.dark .info-row {
-      border-color: #2b3a4c;
-    }
-
-    /* Mobile */
-    @media (max-width: 560px) {
-      .app {
-        padding: 13px 12px 28px;
+      .contact-card {
+        grid-column: span 1;
       }
 
       .hero {
-        min-height: 190px;
-        padding: 22px 17px;
-        gap: 13px;
-        border-radius: 26px;
+        margin-left: 20px;
+        margin-right: 20px;
       }
 
-      .profile-image {
-        width: 91px;
-        height: 91px;
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .header {
+        padding-left: 14px;
+        padding-right: 14px;
       }
 
-      .online-dot {
-        width: 21px;
-        height: 21px;
-        right: 0;
-        bottom: 4px;
-        border-width: 3px;
+      .container {
+        padding-left: 14px;
+        padding-right: 14px;
       }
 
-      .hero-content h2 {
-        font-size: 22px;
+      .hero {
+        margin-left: 12px;
+        margin-right: 12px;
+        padding: 24px 20px;
       }
 
-      .hero-content h3 {
-        font-size: 16px;
-      }
-
-      .hero-content .role {
-        font-size: 12px;
-      }
-
-      .hero-content .description {
-        margin-top: 10px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .theme-button {
-        width: 36px;
-        height: 36px;
-        right: 12px;
-        top: 12px;
-        font-size: 17px;
-      }
-
-      .menu-grid {
-        gap: 11px;
-      }
-
-      .menu-card {
-        min-height: 100px;
-        gap: 9px;
-        padding: 11px;
-        border-radius: 20px;
-      }
-
-      .menu-icon {
-        width: 49px;
-        height: 49px;
-        border-radius: 15px;
+      .hero h2 {
         font-size: 25px;
       }
 
-      .menu-info h3 {
-        font-size: 14px;
+      .menu-grid {
+        gap: 9px;
       }
 
-      .menu-info p {
-        margin-top: 5px;
-        font-size: 10px;
+      .menu-card {
+        min-height: 140px;
+        padding: 13px;
       }
 
-      .menu-arrow {
-        font-size: 22px;
+      .menu-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
       }
 
-      .about-card {
-        padding: 11px;
-        margin-bottom: 11px;
-      }
-
-      .about-submenu {
+      .submenu {
         gap: 8px;
       }
 
       .sub-card {
-        gap: 7px;
-        padding: 9px;
-      }
-
-      .sub-icon {
-        width: 34px;
-        height: 34px;
-        border-radius: 10px;
-        font-size: 17px;
-      }
-
-      .sub-card strong {
-        font-size: 12px;
-      }
-
-      .sub-card span {
-        font-size: 9px;
-      }
-
-      .page-card {
-        padding: 18px;
-        border-radius: 22px;
+        padding: 11px 9px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="app">
 
-    <!-- Header -->
-    <header class="mini-header">
-      <button class="header-button" onclick="goHome()" aria-label="Back">
-        ‹
-      </button>
+  <div class="app">
 
-      <div class="header-title">
-        <h1>Chhiev Profile</h1>
-        <p>mini app</p>
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="header">
+
+      <div class="brand">
+        <div class="avatar">
+          4
+          <img src="img/chhiev.jpg" alt="Chhiev Profile">
+        
+        </div>
+
+        <div>
+          <h1>Chhiev Profile</h1>
+          <p>Personal Space</p>
+        </div>
       </div>
 
-      <div class="header-spacer"></div>
-    </header>
-
-    <!-- HOME PAGE -->
-    <section id="homePage" class="page active">
-
-      <!-- Hero Profile -->
-      <section class="hero">
+      <div class="header-actions">
         <button
-          class="theme-button"
-          onclick="toggleDarkMode()"
+          class="icon-btn"
+          id="themeBtn"
           aria-label="Toggle dark mode"
-          id="themeButton"
+          title="Toggle theme"
         >
           🌙
         </button>
+      </div>
 
-        <div class="profile-image-wrap">
-          <!-- Replace profile.jpg with your own image -->
-          <img
-            class="profile-image"
-            src="profile.jpg"
-            alt="Chhiev Profile"
-            onerror="this.src='https://via.placeholder.com/300x300.png?text=Profile'"
-          />
-          <span class="online-dot"></span>
-        </div>
+    </header>
 
-        <div class="hero-content">
-          <h2>Chhiev Profile</h2>
-          <h3>Nanchhiev Pil</h3>
-          <div class="role">Web Designer & Creative Developer</div>
-          <p class="description">
-            Explore my profile, tools, media, learning resources
-            and creative works in one place.
-          </p>
-        </div>
-      </section>
+    <!-- =====================================
+         HERO
+    ====================================== -->
 
-      <!-- Menu -->
-      <section class="menu-area">
+    <section class="hero">
 
-        <!-- About Me -->
-        <div class="menu-card about-card" id="aboutCard">
-          <div class="about-top" onclick="toggleAbout()">
-            <div class="menu-icon icon-blue">👤</div>
+      <div class="hero-content">
+
+        <span class="hero-badge">✨ Welcome</span>
+
+        <h2>Explore My World</h2>
+
+        <p>
+          Discover my profile, tools, media, learning resources,
+          and creative works in one place.
+        </p>
+
+        <button class="hero-btn" data-link="home.html">
+          Explore Profile
+          <span>→</span>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================
+         MAIN MENU
+    ====================================== -->
+
+    <main class="container">
+
+      <div class="section-title">
+        <h2>Explore</h2>
+        <p>Choose a section to continue</p>
+      </div>
+
+      <div class="menu-grid">
+
+        <!-- =================================
+             ABOUT ME + SUBMENU
+        ================================== -->
+
+        <div class="about-wrapper">
+
+          <button class="menu-card about-main" id="aboutBtn">
+
+            <div class="menu-icon blue">👤</div>
 
             <div class="menu-info">
               <h3>About Me</h3>
               <p>Personal profile & information</p>
             </div>
 
-            <div class="about-arrow">⌄</div>
-          </div>
+            <span class="arrow">›</span>
 
-          <div class="about-submenu">
-            <div
-              class="sub-card"
-              onclick="showPage('loanPage')"
-            >
-              <div class="sub-icon icon-green">💰</div>
+          </button>
+
+          <!-- Submenu -->
+          <div class="submenu" id="aboutSubmenu">
+
+            <button class="sub-card" data-link="loan.html">
+              <div class="sub-icon teal">💰</div>
               <div>
-                <strong>Loan</strong>
-                <span>Loan information</span>
+                <h4>Loan</h4>
+                <p>Loan information</p>
               </div>
-            </div>
+            </button>
 
-            <div
-              class="sub-card"
-              onclick="showPage('incomePage')"
-            >
-              <div class="sub-icon icon-orange">📊</div>
+            <button class="sub-card" data-link="income.html">
+              <div class="sub-icon lime">📈</div>
               <div>
-                <strong>Income</strong>
-                <span>Income information</span>
+                <h4>Income</h4>
+                <p>Income information</p>
               </div>
-            </div>
-          </div>
-        </div>
+            </button>
 
-        <div class="menu-grid">
-
-          <!-- Resume -->
-          <div class="menu-card" onclick="showPage('resumePage')">
-            <div class="menu-icon icon-purple">📄</div>
-            <div class="menu-info">
-              <h3>Resume</h3>
-              <p>Experience & skills</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- Portfolio -->
-          <div class="menu-card" onclick="showPage('portfolioPage')">
-            <div class="menu-icon icon-pink">🎨</div>
-            <div class="menu-info">
-              <h3>Portfolio</h3>
-              <p>My creative works</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- AI Caption -->
-          <div class="menu-card" onclick="openExternalLink(
-            'https://ai-caption-generator-ls5y.onrender.com/'
-          )">
-            <div class="menu-icon icon-blue">✨</div>
-            <div class="menu-info">
-              <h3>AI Caption</h3>
-              <p>AI caption generator</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- Video -->
-          <div class="menu-card" onclick="showPage('videoPage')">
-            <div class="menu-icon icon-red">▶️</div>
-            <div class="menu-info">
-              <h3>Video</h3>
-              <p>Watch videos</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- Music -->
-          <div class="menu-card" onclick="showPage('musicPage')">
-            <div class="menu-icon icon-green">🎵</div>
-            <div class="menu-info">
-              <h3>Music</h3>
-              <p>Listen to music</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- Books -->
-          <div class="menu-card" onclick="showPage('booksPage')">
-            <div class="menu-icon icon-orange">📖</div>
-            <div class="menu-info">
-              <h3>Books</h3>
-              <p>Read books</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- Course -->
-          <div class="menu-card" onclick="showPage('coursePage')">
-            <div class="menu-icon icon-purple">🎓</div>
-            <div class="menu-info">
-              <h3>Course</h3>
-              <p>Learning resources</p>
-            </div>
-            <div class="menu-arrow">›</div>
-          </div>
-
-          <!-- Contact -->
-          <div class="menu-card" onclick="showPage('contactPage')">
-            <div class="menu-icon icon-cyan">📞</div>
-            <div class="menu-info">
-              <h3>Contact</h3>
-              <p>Get in touch with me</p>
-            </div>
-            <div class="menu-arrow">›</div>
           </div>
 
         </div>
-      </section>
 
-      <footer class="footer">
-        © 2026 Chhiev Profile<br />
-        Made with ❤️
-      </footer>
-    </section>
+        <!-- =================================
+             RESUME
+        ================================== -->
 
-    <!-- LOAN PAGE -->
-    <section id="loanPage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-green">💰</div>
-          <div>
-            <h2>Loan</h2>
-            <p>Loan information</p>
-          </div>
-        </div>
+        <button class="menu-card" data-link="resume.html">
 
-        <h3>Loan Information</h3>
-        <p>
-          This section can be used to show loan information,
-          loan services, requirements and contact details.
-        </p>
+          <div class="menu-icon purple">📄</div>
 
-        <div class="info-row">
-          <span>Loan Type</span>
-          <strong>Personal Loan</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Interest</span>
-          <strong>Contact for details</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Requirement</span>
-          <strong>ID Card / Documents</strong>
-        </div>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
-        </button>
-      </div>
-    </section>
-
-    <!-- INCOME PAGE -->
-    <section id="incomePage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-orange">📊</div>
-          <div>
-            <h2>Income</h2>
-            <p>Income information</p>
-          </div>
-        </div>
-
-        <h3>Income Information</h3>
-        <p>
-          This section can show income sources, business information,
-          financial planning or other income-related content.
-        </p>
-
-        <div class="info-row">
-          <span>Income Source</span>
-          <strong>Business / Freelance</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Experience</span>
-          <strong>Web & Creative Work</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Status</span>
-          <strong>Available</strong>
-        </div>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
-        </button>
-      </div>
-    </section>
-
-    <!-- RESUME PAGE -->
-    <section id="resumePage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-purple">📄</div>
-          <div>
-            <h2>Resume</h2>
+          <div class="menu-info">
+            <h3>Resume</h3>
             <p>Experience & skills</p>
           </div>
-        </div>
 
-        <h3>About My Experience</h3>
-        <p>
-          I work on web design, UI design, website development,
-          branding and digital creative projects.
-        </p>
+          <span class="arrow">›</span>
 
-        <h3>Skills</h3>
-        <ul>
-          <li>HTML, CSS and JavaScript</li>
-          <li>Responsive Web Design</li>
-          <li>UI/UX Design</li>
-          <li>Graphic Design</li>
-          <li>Telegram Mini App</li>
-          <li>Website Deployment</li>
-        </ul>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
-      </div>
-    </section>
 
-    <!-- PORTFOLIO PAGE -->
-    <section id="portfolioPage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-pink">🎨</div>
-          <div>
-            <h2>Portfolio</h2>
+        <!-- =================================
+             PORTFOLIO
+        ================================== -->
+
+        <button class="menu-card" data-link="portfolio.html">
+
+          <div class="menu-icon orange">🎨</div>
+
+          <div class="menu-info">
+            <h3>Portfolio</h3>
             <p>My creative works</p>
           </div>
-        </div>
 
-        <h3>Creative Projects</h3>
-        <p>
-          This page can contain your design projects, websites,
-          logos, posters, videos and other creative works.
-        </p>
+          <span class="arrow">›</span>
 
-        <div class="info-row">
-          <span>Project 01</span>
-          <strong>Brand Identity</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Project 02</span>
-          <strong>Website Design</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Project 03</span>
-          <strong>Social Media Design</strong>
-        </div>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
-      </div>
-    </section>
 
-    <!-- VIDEO PAGE -->
-    <section id="videoPage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-red">▶️</div>
-          <div>
-            <h2>Video</h2>
+        <!-- =================================
+             AI CAPTION
+        ================================== -->
+
+        <button
+          class="menu-card"
+          data-link="https://ai-caption-generator-ls5y.onrender.com/"
+        >
+
+          <div class="menu-icon pink">✍️</div>
+
+          <div class="menu-info">
+            <h3>AI Caption</h3>
+            <p>AI caption generator</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             VIDEO
+        ================================== -->
+
+        <button class="menu-card" data-link="video.html">
+
+          <div class="menu-icon red">🎬</div>
+
+          <div class="menu-info">
+            <h3>Video</h3>
             <p>Watch videos</p>
           </div>
-        </div>
 
-        <h3>Video Center</h3>
-        <p>
-          You can add your video player, YouTube videos,
-          Telegram video links or your own video server here.
-        </p>
+          <span class="arrow">›</span>
 
-        <!-- Example video -->
-        <!-- Replace the src with your own video URL -->
-        <!--
-        <video
-          controls
-          playsinline
-          style="width:100%; border-radius:18px;"
-        >
-          <source src="your-video.mp4" type="video/mp4" />
-        </video>
-        -->
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
-      </div>
-    </section>
 
-    <!-- MUSIC PAGE -->
-    <section id="musicPage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-green">🎵</div>
-          <div>
-            <h2>Music</h2>
+        <!-- =================================
+             MUSIC
+        ================================== -->
+
+        <button class="menu-card" data-link="music.html">
+
+          <div class="menu-icon green">🎵</div>
+
+          <div class="menu-info">
+            <h3>Music</h3>
             <p>Listen to music</p>
           </div>
-        </div>
 
-        <h3>Music Player</h3>
-        <p>
-          Add your music files or connect your music streaming links
-          in this section.
-        </p>
+          <span class="arrow">›</span>
 
-        <!-- Example audio -->
-        <!--
-        <audio
-          controls
-          style="width:100%;"
-        >
-          <source src="music.mp3" type="audio/mpeg" />
-        </audio>
-        -->
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
-      </div>
-    </section>
 
-    <!-- BOOKS PAGE -->
-    <section id="booksPage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-orange">📖</div>
-          <div>
-            <h2>Books</h2>
+        <!-- =================================
+             BOOKS
+        ================================== -->
+
+        <button class="menu-card" data-link="book.html">
+
+          <div class="menu-icon yellow">📚</div>
+
+          <div class="menu-info">
+            <h3>Books</h3>
             <p>Read books</p>
           </div>
-        </div>
 
-        <h3>My Books</h3>
-        <p>
-          Add PDF books, reading resources, documents or external
-          book links here.
-        </p>
+          <span class="arrow">›</span>
 
-        <div class="info-row">
-          <span>Book 01</span>
-          <strong>Learning Guide</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Book 02</span>
-          <strong>Design Handbook</strong>
-        </div>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
-      </div>
-    </section>
 
-    <!-- COURSE PAGE -->
-    <section id="coursePage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-purple">🎓</div>
-          <div>
-            <h2>Course</h2>
+        <!-- =================================
+             COURSE
+        ================================== -->
+
+        <button class="menu-card" data-link="lessons.html">
+
+          <div class="menu-icon cyan">🎓</div>
+
+          <div class="menu-info">
+            <h3>Course</h3>
             <p>Learning resources</p>
           </div>
-        </div>
 
-        <h3>Learning Courses</h3>
-        <p>
-          This section can contain online courses, tutorials,
-          lessons, learning videos and downloadable materials.
-        </p>
+          <span class="arrow">›</span>
 
-        <div class="info-row">
-          <span>Course 01</span>
-          <strong>Web Design</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Course 02</span>
-          <strong>JavaScript</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Course 03</span>
-          <strong>Graphic Design</strong>
-        </div>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
-      </div>
-    </section>
 
-    <!-- CONTACT PAGE -->
-    <section id="contactPage" class="page">
-      <div class="page-card">
-        <div class="page-heading">
-          <div class="big-icon icon-cyan">📞</div>
-          <div>
-            <h2>Contact</h2>
+        <!-- =================================
+             CONTACT
+        ================================== -->
+
+        <button class="menu-card contact-card" data-link="contact.html">
+
+          <div class="menu-icon indigo">📞</div>
+
+          <div class="menu-info">
+            <h3>Contact</h3>
             <p>Get in touch with me</p>
           </div>
-        </div>
 
-        <h3>Contact Me</h3>
-        <p>
-          You can contact me through Telegram, Facebook,
-          email or other social media.
-        </p>
+          <span class="arrow">›</span>
 
-        <div class="info-row">
-          <span>Telegram</span>
-          <strong>@your_username</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Email</span>
-          <strong>your@email.com</strong>
-        </div>
-
-        <div class="info-row">
-          <span>Phone</span>
-          <strong>+855 XX XXX XXX</strong>
-        </div>
-
-        <a
-          class="external-button"
-          href="https://t.me/"
-          target="_blank"
-        >
-          Open Telegram
-        </a>
-
-        <button class="back-button" onclick="goHome()">
-          ← Back to Home
         </button>
+
       </div>
-    </section>
 
-  </main>
+    </main>
 
-  <!-- Toast -->
-  <div id="toast" class="toast"></div>
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer class="footer">
+      <p>© 2026 Chhiev Profile</p>
+      <p>Made with ❤️</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Message -->
+  <div class="toast" id="toast">Opening...</div>
+
+  <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
 
   <script>
-    // Telegram WebApp
+
+    /* ======================================
+       TELEGRAM MINI APP
+    ====================================== */
+
     const tg = window.Telegram?.WebApp;
 
     if (tg) {
       tg.ready();
       tg.expand();
 
-      // Set Telegram header colors
+      // Telegram colors
       if (tg.setHeaderColor) {
-        tg.setHeaderColor("#f2f7fc");
+        tg.setHeaderColor("#f4f8fc");
       }
 
       if (tg.setBackgroundColor) {
-        tg.setBackgroundColor("#f2f7fc");
+        tg.setBackgroundColor("#f4f8fc");
       }
     }
 
-    // Haptic feedback
-    function haptic() {
-      try {
-        tg?.HapticFeedback?.impactOccurred("light");
-      } catch (error) {
-        // Ignore if not running inside Telegram
+    /* ======================================
+       HAPTIC FEEDBACK
+    ====================================== */
+
+    function haptic(type = "light") {
+      if (tg?.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred(type);
       }
     }
 
-    // Show page
-    function showPage(pageId) {
-      haptic();
+    /* ======================================
+       TOAST
+    ====================================== */
 
-      document.querySelectorAll(".page").forEach((page) => {
-        page.classList.remove("active");
-      });
+    const toast = document.getElementById("toast");
+    let toastTimer;
 
-      const selectedPage = document.getElementById(pageId);
-
-      if (selectedPage) {
-        selectedPage.classList.add("active");
-      }
-
-      // Close About submenu when opening another page
-      document.getElementById("aboutCard")?.classList.remove("open");
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    // Go home
-    function goHome() {
-      haptic();
-
-      document.querySelectorAll(".page").forEach((page) => {
-        page.classList.remove("active");
-      });
-
-      document.getElementById("homePage").classList.add("active");
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    // About submenu
-    function toggleAbout() {
-      haptic();
-      document.getElementById("aboutCard").classList.toggle("open");
-    }
-
-    // External link
-    function openExternalLink(url) {
-      haptic();
-
-      if (tg && tg.openLink) {
-        tg.openLink(url);
-      } else {
-        window.open(url, "_blank");
-      }
-    }
-
-    // Dark mode
-    function toggleDarkMode() {
-      haptic();
-
-      document.body.classList.toggle("dark");
-
-      const isDark = document.body.classList.contains("dark");
-      const themeButton = document.getElementById("themeButton");
-
-      themeButton.textContent = isDark ? "☀️" : "🌙";
-
-      localStorage.setItem("chhiev-dark-mode", isDark ? "true" : "false");
-
-      if (tg) {
-        if (tg.setHeaderColor) {
-          tg.setHeaderColor(isDark ? "#0d1522" : "#f2f7fc");
-        }
-
-        if (tg.setBackgroundColor) {
-          tg.setBackgroundColor(isDark ? "#0d1522" : "#f2f7fc");
-        }
-      }
-    }
-
-    // Load saved theme
-    function loadTheme() {
-      const savedTheme = localStorage.getItem("chhiev-dark-mode");
-
-      if (savedTheme === "true") {
-        document.body.classList.add("dark");
-        document.getElementById("themeButton").textContent = "☀️";
-      }
-    }
-
-    // Toast message
     function showToast(message) {
-      const toast = document.getElementById("toast");
-
       toast.textContent = message;
       toast.classList.add("show");
 
-      setTimeout(() => {
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
         toast.classList.remove("show");
-      }, 2500);
+      }, 1200);
     }
 
-    loadTheme();
+    /* ======================================
+       ABOUT ME SUBMENU
+    ====================================== */
+
+    const aboutBtn = document.getElementById("aboutBtn");
+    const aboutSubmenu = document.getElementById("aboutSubmenu");
+
+    aboutBtn.addEventListener("click", () => {
+      const isOpen = aboutSubmenu.classList.toggle("show");
+
+      aboutBtn.classList.toggle("open", isOpen);
+
+      haptic("light");
+    });
+
+    /* ======================================
+       OPEN LINKS
+    ====================================== */
+
+    document.querySelectorAll("[data-link]").forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const link = button.dataset.link;
+
+        if (!link) return;
+
+        haptic("light");
+
+        // External URL
+        if (link.startsWith("http://") || link.startsWith("https://")) {
+
+          if (tg?.openLink) {
+            tg.openLink(link);
+          } else {
+            window.open(link, "_blank", "noopener,noreferrer");
+          }
+
+          return;
+        }
+
+        // Internal HTML page
+        // Example: loan.html, resume.html, video.html
+        window.location.href = link;
+
+      });
+
+    });
+
+    /* ======================================
+       DARK MODE
+    ====================================== */
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    let darkMode = false;
+
+    themeBtn.addEventListener("click", () => {
+
+      darkMode = !darkMode;
+
+      document.body.classList.toggle("dark", darkMode);
+
+      themeBtn.textContent = darkMode ? "☀️" : "🌙";
+
+      // Update Telegram colors
+      if (tg) {
+        if (tg.setHeaderColor) {
+          tg.setHeaderColor(darkMode ? "#101820" : "#f4f8fc");
+        }
+
+        if (tg.setBackgroundColor) {
+          tg.setBackgroundColor(darkMode ? "#101820" : "#f4f8fc");
+        }
+      }
+
+      haptic("light");
+
+    });
+
+    /* ======================================
+       TELEGRAM USER INFO (OPTIONAL)
+    ====================================== */
+
+    // You can access Telegram user information
+    // when the Mini App is opened inside Telegram.
+    //
+    // Example:
+    //
+    // const user = tg?.initDataUnsafe?.user;
+    // console.log(user);
+
   </script>
+
 </body>
 </html>
