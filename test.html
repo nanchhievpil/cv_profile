@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1,
+      maximum-scale=1,
+      user-scalable=no">
+
+<title>Chhiev Profile</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:-apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+}
+
+body{
+  color:#fff;
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      #0756a933,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 100% 30%,
+      #164bff22,
+      transparent 34%
+    ),
+    #050912;
+
+  min-height:100vh;
+}
+
+.app{
+  width:min(100%,620px);
+  margin:auto;
+  padding:16px 14px 100px;
+}
+
+/* HEADER */
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.header button{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid #20324c;
+  background:#0d1624;
+  color:#fff;
+  font-size:22px;
+}
+
+.header-title{
+  text-align:center;
+}
+
+.header-title b{
+  font-size:19px;
+}
+
+.header-title small{
+  display:block;
+  color:#8e9caf;
+}
+
+/* CARD */
+
+.card{
+  background:
+    linear-gradient(
+      145deg,
+      #0d1a2cdd,
+      #07101ddd
+    );
+
+  border:1px solid #1d3554;
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:14px;
+}
+
+/* PROFILE */
+
+.hero{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.avatar{
+  width:92px;
+  height:92px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #118cff,
+      #153d9b
+    );
+
+  border:3px solid #2999ff;
+
+  box-shadow:
+    0 0 22px #168cff55;
+
+  font-size:30px;
+  font-weight:800;
+}
+
+.hero h1{
+  font-size:24px;
+  margin-bottom:5px;
+}
+
+.username{
+  color:#5db0ff;
+}
+
+.online{
+  color:#38ef78;
+  font-size:13px;
+  margin-top:7px;
+}
+
+.badge{
+  display:inline-block;
+
+  width:19px;
+  height:19px;
+
+  line-height:19px;
+  text-align:center;
+
+  border-radius:50%;
+
+  background:#198cff;
+
+  font-size:12px;
+}
+
+/* SECTION */
+
+.section-title{
+  color:#2999ff;
+  font-weight:800;
+  font-size:18px;
+  margin-bottom:13px;
+}
+
+.bio{
+  color:#aab5c7;
+  line-height:1.6;
+}
+
+/* QUICK MENU */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:10px;
+}
+
+.action{
+  min-height:82px;
+
+  padding:13px;
+
+  border-radius:17px;
+
+  border:1px solid #28415f;
+
+  background:#091525;
+
+  color:#fff;
+
+  text-align:left;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.action:hover{
+  border-color:#2999ff;
+
+  box-shadow:
+    0 0 15px #168cff33;
+
+  transform:translateY(-2px);
+}
+
+.action:active{
+  transform:scale(.97);
+}
+
+.action strong{
+  display:block;
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.action span{
+  color:#8997aa;
+  font-size:12px;
+}
+
+/* PROFILE INFO */
+
+.row{
+  display:flex;
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:11px 0;
+
+  border-bottom:
+    1px solid #ffffff0d;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.row span:first-child{
+  color:#8e9caf;
+}
+
+.row span:last-child{
+  text-align:right;
+}
+
+.blue{
+  color:#55afff!important;
+}
+
+.green{
+  color:#38ef78!important;
+}
+
+/* TIMELINE */
+
+.timeline{
+  border-left:
+    2px solid #1e5d99;
+
+  padding-left:15px;
+}
+
+.item{
+  position:relative;
+  margin-bottom:18px;
+}
+
+.item:before{
+  content:"";
+
+  position:absolute;
+
+  left:-21px;
+  top:4px;
+
+  width:9px;
+  height:9px;
+
+  border-radius:50%;
+
+  background:#2999ff;
+
+  box-shadow:
+    0 0 10px #2999ff;
+}
+
+.item b{
+  color:#58adff;
+  font-size:13px;
+}
+
+.item h3{
+  font-size:16px;
+  margin:4px 0;
+}
+
+.item p{
+  color:#8997aa;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* SKILLS */
+
+.skill{
+  margin:14px 0;
+}
+
+.skill-top{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+}
+
+.bar{
+  height:7px;
+
+  border-radius:10px;
+
+  background:#18263a;
+
+  overflow:hidden;
+
+  margin-top:7px;
+}
+
+.bar i{
+  display:block;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #168cff,
+      #63c4ff
+    );
+
+  border-radius:10px;
+}
+
+/* CERTIFICATE */
+
+.cert{
+  padding:14px;
+
+  border:1px solid #203650;
+
+  border-radius:15px;
+
+  background:#091525;
+
+  margin-bottom:9px;
+}
+
+.cert b{
+  font-size:14px;
+}
+
+.cert small{
+  display:block;
+
+  color:#8997aa;
+
+  margin-top:5px;
+}
+
+/* CONTACT */
+
+.contact a{
+  display:block;
+
+  text-decoration:none;
+
+  color:#fff;
+
+  padding:14px;
+
+  border:1px solid #223b58;
+
+  border-radius:14px;
+
+  margin:8px 0;
+
+  background:#091525;
+}
+
+/* BOTTOM NAV */
+
+.bottom{
+  position:fixed;
+
+  left:10px;
+  right:10px;
+  bottom:9px;
+
+  margin:auto;
+
+  width:min(
+    600px,
+    calc(100% - 20px)
+  );
+
+  height:68px;
+
+  border:
+    1px solid #243a55;
+
+  border-radius:22px;
+
+  background:#07101eed;
+
+  backdrop-filter:
+    blur(18px);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:
+    space-around;
+
+  z-index:20;
+}
+
+.nav{
+  border:0;
+
+  background:none;
+
+  color:#8794a8;
+
+  cursor:pointer;
+
+  font-size:11px;
+
+  min-width:52px;
+}
+
+.nav b{
+  display:block;
+
+  font-size:22px;
+
+  line-height:25px;
+}
+
+.nav.active{
+  color:#3ca5ff;
+}
+
+/* MOBILE */
+
+@media(max-width:380px){
+
+  .hero h1{
+    font-size:20px;
+  }
+
+  .avatar{
+    width:78px;
+    height:78px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<!-- HEADER -->
+
+<header class="header">
+
+  <button
+    type="button"
+    id="backBtn">
+    ‹
+  </button>
+
+  <div class="header-title">
+    <b>Chhiev Profile</b>
+    <small>bot</small>
+  </div>
+
+  <button
+    type="button"
+    id="profileBtn">
+    👤
+  </button>
+
+</header>
+
+
+<!-- PROFILE -->
+
+<section class="card hero">
+
+  <div class="avatar">
+        NP
+  </div>
+
+  <div>
+
+    <h1>
+      Nanchhiev Pil
+      <span class="badge">✓</span>
+    </h1>
+
+    <div class="username">
+      @pilnanchhiev
+    </div>
+
+    <div class="online">
+      ● Available
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WELCOME -->
+
+<section class="card">
+
+  <div class="section-title">
+    👋 Welcome to Chhiev Profile
+  </div>
+
+  <p class="bio">
+    Web Designer, Graphic Designer,
+    Marketing and POS System developer.
+    Explore my profile and projects.
+  </p>
+
+</section>
+
+
+<!-- QUICK MENU -->
+
+<section class="card">
+
+  <div class="section-title">
+    ⚡ Quick Menu
+  </div>
+
+  <div class="grid">
+
+    <!-- RESUME -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="resume.html">
+
+      <strong>
+        📄 Resume
+      </strong>
+
+      <span>
+        Education & Experience
+      </span>
+
+    </button>
+
+
+    <!-- PORTFOLIO -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="protfolio.html">
+
+      <strong>
+        🎨 Portfolio
+      </strong>
+
+      <span>
+        Creative Projects
+      </span>
+
+    </button>
+
+
+    <!-- VIDEO -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="video.html">
+
+      <strong>
+        🎬 Video
+      </strong>
+
+      <span>
+        Watch Videos
+      </span>
+
+    </button>
+
+
+    <!-- BOOK -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="book.html">
+
+      <strong>
+        📚 Books
+      </strong>
+
+      <span>
+        Books & Resources
+      </span>
+
+    </button>
+
+
+    <!-- COURSE -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="lessons.html">
+
+      <strong>
+        🎓 Course
+      </strong>
+
+      <span>
+        Lessons & Learning
+      </span>
+
+    </button>
+
+
+    <!-- CONTACT -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="contact.html">
+
+      <strong>
+        📞 Contact
+      </strong>
+
+      <span>
+        Get In Touch
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- QUICK MENU -->
+
+<section class="card">
+
+  <div class="section-title">
+    ⚡ Quick Menu
+  </div>
+
+  <div class="grid">
+
+    <!-- RESUME -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="resume.html">
+
+      <strong>
+        📄 Resume
+      </strong>
+
+      <span>
+        Education & Experience
+      </span>
+
+    </button>
+
+
+    <!-- PORTFOLIO -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="protfolio.html">
+
+      <strong>
+        🎨 Portfolio
+      </strong>
+
+      <span>
+        Creative Projects
+      </span>
+
+    </button>
+
+
+    <!-- VIDEO -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="video.html">
+
+      <strong>
+        🎬 Video
+      </strong>
+
+      <span>
+        Watch Videos
+      </span>
+
+    </button>
+
+
+    <!-- BOOK -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="book.html">
+
+      <strong>
+        📚 Books
+      </strong>
+
+      <span>
+        Books & Resources
+      </span>
+
+    </button>
+
+
+    <!-- COURSE -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="lessons.html">
+
+      <strong>
+        🎓 Course
+      </strong>
+
+      <span>
+        Lessons & Learning
+      </span>
+
+    </button>
+
+
+    <!-- CONTACT -->
+
+    <button
+      class="action"
+      type="button"
+      data-url="contact.html">
+
+      <strong>
+        📞 Contact
+      </strong>
+
+      <span>
+        Get In Touch
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom">
+
+  <button
+    class="nav active"
+    data-target="home">
+
+    <b>⌂</b>
+    Home
+
+  </button>
+
+
+  <button
+    class="nav"
+    data-target="profile">
+
+    <b>👤</b>
+    Profile
+
+  </button>
+
+
+  <button
+    class="nav"
+    data-target="resume">
+
+    <b>📄</b>
+    Resume
+
+  </button>
+
+
+  <button
+    class="nav"
+    data-target="portfolio">
+
+    <b>🎨</b>
+    Work
+
+  </button>
+
+
+  <button
+    class="nav"
+    data-target="contact">
+
+    <b>☏</b>
+    Contact
+
+  </button>
+
+</nav>
+
+
+<script>
+
+const tg =
+  window.Telegram &&
+  window.Telegram.WebApp;
+
+
+if(tg){
+
+  tg.ready();
+
+  tg.expand();
+
+}
+
+
+/* QUICK MENU URL */
+
+document
+.querySelectorAll("[data-url]")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      const url =
+        button.dataset.url;
+
+      if(url){
+
+        window.location.href =
+          url;
+
+      }
+
+    }
+  );
+
+});
+
+
+/* BOTTOM NAV */
+
+function goTo(id){
+
+  if(id === "home"){
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+    return;
+
+  }
+
+  const element =
+    document.getElementById(id);
+
+  if(element){
+
+    element.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  }
+
+}
+
+
+document
+.querySelectorAll(".nav")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      document
+      .querySelectorAll(".nav")
+      .forEach(n =>
+        n.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      goTo(button.dataset.target);
+
+    }
+  );
+
+});
+
+
+/* PROFILE BUTTON */
+
+document
+.getElementById("profileBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    goTo("profile");
+
+  }
+);
+
+
+/* BACK */
+
+document
+.getElementById("backBtn")
+.addEventListener(
+  "click",
+  () => {
+
+    if(history.length > 1){
+
+      history.back();
+
+    }else{
+
+      goTo("home");
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>

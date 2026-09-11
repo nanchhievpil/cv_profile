@@ -1,1252 +1,1102 @@
+
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <title>Chhiev - Resume / CV / vCard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Leven - Resume / CV / vCard Template" />
-    <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, portfolio" />
-    <meta name="author" content="lmpixels" />
-    <link rel="shortcut icon" href="favicon.png">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="css/normalize.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/animations.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/dlmenu.css" type="text/css">
-    <link rel="stylesheet" href="css/main.css" type="text/css">
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#229ED9" />
+  <meta name="description" content="Chhiev Profile Mini App" />
 
-  <body>
+  <title>Chhiev Profile</title>
 
+  <!-- Telegram Mini App SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <script>
-    const tg = window.Telegram.WebApp;
+  <style>
+    /* ========================================
+       RESET & VARIABLES
+    ======================================== */
 
-    tg.ready();
-    tg.expand();
-
-    console.log("Telegram Mini App is ready");
-
-    if (tg.initDataUnsafe.user) {
-        console.log("Telegram User:", tg.initDataUnsafe.user);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-</script>
 
+    :root {
+      --primary: #229ed9;
+      --primary-dark: #147fba;
+      --primary-light: #e5f4ff;
 
+      --bg: #f4f8fc;
+      --card: #ffffff;
+      --text: #17212b;
+      --muted: #7b8794;
+      --border: #e6edf3;
 
-    <div class="lm-animated-bg"></div>
-    
-    <!-- Loading animation -->
-    <div class="preloader">
-      <div class="preloader-animation">
-        <div class="preloader-spinner">
+      --success: #16a34a;
+      --shadow: 0 8px 28px rgba(30, 80, 120, 0.07);
+
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    body.dark {
+      --bg: #101820;
+      --card: #1a2834;
+      --text: #f5f7fa;
+      --muted: #a6b4c1;
+      --border: #2c3d4b;
+      --primary-light: #203d50;
+      --shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========================================
+       APP CONTAINER
+    ======================================== */
+
+    .app {
+      width: 100%;
+      max-width: 680px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding-bottom: 24px;
+    }
+
+    /* ========================================
+       HEADER
+    ======================================== */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 18px 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(135deg, #35b9f0, #147fba);
+      color: white;
+
+      font-size: 15px;
+      font-weight: 800;
+
+      box-shadow: 0 5px 15px rgba(34, 158, 217, 0.25);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Replace CP with your profile image if needed */
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand h1 {
+      font-size: 19px;
+      font-weight: 750;
+      letter-spacing: -0.4px;
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: var(--card);
+      color: var(--text);
+
+      font-size: 18px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .hero {
+      position: relative;
+      margin: 8px 16px 28px;
+      padding: 28px 23px;
+
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(255, 255, 255, 0.22),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 0% 100%,
+          rgba(255, 255, 255, 0.08),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #2bb5ed 0%,
+          #168ac0 55%,
+          #126ba3 100%
+        );
+
+      box-shadow: 0 12px 30px rgba(34, 158, 217, 0.2);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -50px;
+      bottom: -65px;
+
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 20px rgba(255, 255, 255, 0.03),
+        0 0 0 40px rgba(255, 255, 255, 0.025);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+
+      padding: 6px 11px;
+      border-radius: 30px;
+
+      background: rgba(255, 255, 255, 0.17);
+
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h2 {
+      font-size: 29px;
+      line-height: 1.15;
+      letter-spacing: -0.9px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 430px;
+      font-size: 14px;
+      line-height: 1.65;
+      opacity: 0.92;
+      margin-bottom: 22px;
+    }
+
+    .hero-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      max-width: 260px;
+
+      padding: 13px 16px;
+      border: none;
+      border-radius: 14px;
+
+      background: white;
+      color: #168ac0;
+
+      font-size: 14px;
+      font-weight: 750;
+
+      transition: transform 0.2s;
+    }
+
+    .hero-btn:active {
+      transform: scale(0.97);
+    }
+
+    .hero-btn span {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    /* ========================================
+       MAIN CONTAINER
+    ======================================== */
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      font-size: 21px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ========================================
+       MENU GRID
+    ======================================== */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .menu-card {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      width: 100%;
+      min-height: 154px;
+      padding: 16px;
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+
+      background: var(--card);
+      color: var(--text);
+      text-align: left;
+
+      box-shadow: var(--shadow);
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 158, 217, 0.4);
+      box-shadow: 0 12px 28px rgba(30, 80, 120, 0.11);
+    }
+
+    .menu-card:active {
+      transform: scale(0.97);
+    }
+
+    .menu-icon {
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+      font-size: 22px;
+
+      margin-bottom: 18px;
+    }
+
+    .menu-info {
+      min-width: 0;
+      padding-right: 4px;
+    }
+
+    .menu-info h3 {
+      font-size: 15px;
+      font-weight: 750;
+      margin-bottom: 5px;
+    }
+
+    .menu-info p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 17px;
+      right: 15px;
+
+      color: var(--muted);
+      font-size: 23px;
+      line-height: 1;
+    }
+
+    /* ========================================
+       ABOUT ME / SUBMENU
+    ======================================== */
+
+    .about-wrapper {
+      grid-column: 1 / -1;
+    }
+
+    .about-main {
+      min-height: 120px;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .about-main .menu-icon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .about-main .menu-info {
+      flex: 1;
+    }
+
+    .about-main .arrow {
+      transform: rotate(90deg);
+      transition: transform 0.25s;
+    }
+
+    .about-main.open .arrow {
+      transform: rotate(-90deg);
+    }
+
+    .submenu {
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .submenu.show {
+      display: grid;
+      animation: slideDown 0.25s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .sub-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      min-width: 0;
+      padding: 13px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background: var(--card);
+      color: var(--text);
+      text-align: left;
+
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .sub-card:active {
+      transform: scale(0.97);
+    }
+
+    .sub-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 11px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .sub-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .sub-card p {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    /* ========================================
+       CONTACT CARD
+    ======================================== */
+
+    .contact-card {
+      grid-column: 1 / -1;
+      min-height: auto;
+
+      flex-direction: row;
+      align-items: center;
+      gap: 13px;
+      padding: 15px 16px;
+    }
+
+    .contact-card .menu-icon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .contact-card .menu-info {
+      flex: 1;
+    }
+
+    /* ========================================
+       ICON COLORS
+    ======================================== */
+
+    .blue   { background: #e5f4ff; }
+    .purple { background: #f0eaff; }
+    .orange { background: #fff0df; }
+    .pink   { background: #ffe7f0; }
+    .red    { background: #ffe6e6; }
+    .green  { background: #e3f8eb; }
+    .yellow { background: #fff7d9; }
+    .cyan   { background: #e0f8ff; }
+    .teal   { background: #e0f7f4; }
+    .lime   { background: #eef8d9; }
+    .indigo { background: #e9eaff; }
+
+    body.dark .menu-icon,
+    body.dark .sub-icon {
+      filter: brightness(0.78);
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+      padding: 35px 20px 15px;
+    }
+
+    /* ========================================
+       TOAST
+    ======================================== */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+
+      transform: translate(-50%, 20px);
+
+      background: #17212b;
+      color: white;
+
+      padding: 11px 18px;
+      border-radius: 12px;
+
+      font-size: 13px;
+      white-space: nowrap;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: 0.25s;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+
+    @media (min-width: 500px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .about-wrapper {
+        grid-column: span 2;
+      }
+
+      .contact-card {
+        grid-column: span 1;
+      }
+
+      .hero {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .header {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .container {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .hero {
+        margin-left: 12px;
+        margin-right: 12px;
+        padding: 24px 20px;
+      }
+
+      .hero h2 {
+        font-size: 25px;
+      }
+
+      .menu-grid {
+        gap: 9px;
+      }
+
+      .menu-card {
+        min-height: 140px;
+        padding: 13px;
+      }
+
+      .menu-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+      }
+
+      .submenu {
+        gap: 8px;
+      }
+
+      .sub-card {
+        padding: 11px 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="header">
+
+      <div class="brand">
+        <div class="avatar">
+          CP
+
+          <!--
+          ប្រសិនបើចង់ដាក់រូប Profile:
+          លុប CP ហើយដាក់៖
+
+          <img src="avatar.jpg" alt="Chhiev Profile">
+          -->
+        </div>
+
+        <div>
+          <h1>Chhiev Profile</h1>
+          <p>Personal Space</p>
         </div>
       </div>
-    </div>
-    <!-- /Loading animation -->
 
-    <!-- Page Wrapper -->
-    <div class="page-wrapper bg-move-effect">
-      <div class="page-content site-content">
-
-        <!-- Site Header -->
-        <header id="site_header" class="header">
-          <div class="header-content">
-            <!-- Menu Button Icon -->
-            <div class="menu-button">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <!-- /Menu Button Icon -->
-                
-            <!-- Personal Photo or Site Logo -->
-            <!--<div class="header-photo">
-              <a href="#">
-                <img src="./img/profile_img.jpg" alt="image">
-              </a>
-            </div>-->
-            <!-- /Personal Photo or Site Logo -->
-
-            <!-- Text Logo -->
-            <div class="header-titles">
-              <a href="./index.html">
-                <h2>AS</h2>
-              </a>
-            </div>
-            <!-- Text Logo -->
-          </div>
-          
-          <!-- Site Main Menu & Profile Card -->
-          <div class="site-menu profile-card-on flex-v-align dl-menuwrapper">
-            <!-- Profile Card -->
-            <div class="profile-card flex-v-align">
-              <div class="profile-card-block">
-                <!-- Profile Photo -->
-                <div class="profile-img">
-                  <a href="birthday.html">
-                    <img src="./img/chhiev.jpg" alt="image">
-                  </a>
-                </div>
-                <!-- /Profile Photo -->
-                
-                <!-- Profile Titles -->
-                <a href="#">
-                  <h3 class="site-title">Nanchhiev Pil</h3>
-                </a>
-                            
-                <h5 class="site-subtitle">Web Designer</h5>
-                <!-- /Profile Titles -->
-                
-                <!-- Social Links -->
-                <div class="social-links">
-                  <ul>
-                    <li>
-                      <a href="https://t.me/pilnanchhiev" target="_blank">
-                        <i class="fab fa-telegram"></i>
-                      </a>
-                    </li>
-                    
-                    <li>
-                      <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
-                    </li>
-                    
-                    <li>
-                      <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank" ><h5>TK</h5>
-                        <i class="fa-brands fa-tiktok"></i>
-                      </a>
-                    </li>
-
-                  </ul>
-                </div>
-                <!-- /Social Links -->
-              </div>
-            </div>
-            <!-- /Profile Card -->
-
-            <!-- Main Menu -->
-            <ul class="alan-classic-menu main-menu dl-menu dl-menuopen">
-              <li class="menu-item current-menu-item current-menu-parent menu-item-has-children">
-                <a href="index.html">About Me</a>
-                <ul class="sub-menu">
-                  
-                   <li class="menu-item">
-                <a href="loan.html">Loan </a>
-              </li>
-
-              <li class="menu-item">
-                <a href="income.html">Income</a>
-              </li>
-
-                </ul>
-              </li>
-
-              
-              <li class="menu-item">
-                <a href="resume.html">Resume</a>
-              </li>
-
-              <li class="menu-item">
-                <a href="portfolio.html">Portfolio</a>
-              </li>
-
-              <li>
-                <a href="https://ai-caption-generator-ls5y.onrender.com/">AI Caption</a>
-              </li>
-              
-
-              <li class="menu-item">
-                <a href="video.html">Video</a>
-              </li>
-
-              <li class="menu-item">
-                <a href="music.html">Music</a>
-              </li>
-              
-              <li class="menu-item">
-                <a href="book.html">Books</a>
-              </li>
-
-              <li class="menu-item">
-                <a href="lessons.html">Courese</a>
-              </li>
-
-              <li class="menu-item">
-                <a href="contact.html">Contact</a>
-              </li>
-            </ul>
-            <!-- /Main Menu -->
-          </div>
-          <!-- /Site Main Menu & Profile Card -->
-        </header>
-        <!-- /Site Header -->
-
-        <!-- Right Sidebar -->
-        <div class="r-sidebar">
-          <div class="sidebar-button">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        
-        <div id="blog-sidebar" class="blog-sidebar">
-          <div class="blog-sidebar-content clearfix">
-            <div class="sidebar-item">
-              <div class="sidebar-title">
-                <h4>Recent Posts</h4>
-              </div>
-              <ul>
-                <li>
-                  <a href="#">Best Practices for Animated Progress Indicators</a>
-                </li>
-                
-                <li>
-                  <a href="#">Designing the Perfect Feature Comparison Table</a>
-                </li>
-                
-                <li>
-                  <a href="#">An Overview of E-Commerce Platforms</a>
-                </li>
-                
-                <li>
-                  <a href="#">Why I Switched to Sketch For UI Design</a>
-                </li>
-                
-                <li>
-                  <a href="#">Creative and Innovative Navigation Designs</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="sidebar-item"><div class="sidebar-title"><h4>Archives</h4></div>
-              <ul>
-                <li>
-                  <a href='#'>June 2020</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="sidebar-item">
-              <div class="sidebar-title">
-                <h4>Categories</h4>
-              </div>
-              
-              <ul>
-                <li class="cat-item">
-                  <a href="#">Design</a>
-                </li>
-                
-                <li class="cat-item">
-                  <a href="#">E-Commerce</a>
-                </li>
-
-                <li class="cat-item">
-                  <a href="#">UI</a>
-                </li>
-                
-                <li class="cat-item">
-                  <a href="#">Uncategorized</a>
-                </li>
-                
-                <li class="cat-item">
-                  <a href="#">WordPress</a>
-                </li>
-              </ul>
-
-            </div>
-
-          </div>
-        </div>
-        <!-- /Right Sidebar -->
-
-        <!-- Page Content -->
-        <div class="content-area single-page-area" data-animation="animated-section-rotateRoomBottomIn">
-          <div class="single-page-content">
-            <div class="content-wrapper">
-              <!-- About Me Section -->
-              <section>      
-                <div class="section-content vcentered home-page-third-style">
-
-                  <div id="home_content_1" class="home-content">
-                    <div class="row flex-v-align">
-                      <div class="col-sm-12 without-padding col-md-6 col-lg-6">
-                        <div class="home-photo">
-                          <div class="hp-inner" style="background-image: url(./img/chhiev.jpg)"></div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="home-text">
-                          <div class="owl-carousel text-rotation">                                    
-                            <div class="item">
-                              <h4>Web Designer</h4>
-                            </div>
-                            
-                            <div class="item">
-                              <h4>Frontend-developer</h4>
-                            </div>
-                          </div>
-                          
-                          <h1><span>Hi, I'm</span> Nanchhiev Pil</h1>
-                          <p>My name is Pil Nanchhiev, I st5udy at Hun Sen Po Ampil High School,
-                            at Build Bright University and I am currently working in Media at
-                            25Media and will write a pos management progaram with a POS system
-                            program at Master IT.</p>
-                      
-                          <div class="home-buttons">
-                            <a href="img/cv nanchhiev.pdf (1).pdf" target="yes" class="btn btn-primary" download>Download CV</a>
-                            <a href="img/Results.pdf" target="yes" class="btn btn-secondary" download>Score Operation</a>
-                            <a href="./contact.html" target="yes" class="btn btn-secondary">Contact</a>
-                          </div>
-
-
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- /About Me Section -->
-
-              <!-- What I DO / Services Section -->
-              <section>
-                <!-- Add White Space -->
-                <div class="p-50"></div>
-                <!-- /Add White Space -->
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h2>What I Do</h2>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-6">
-                    <div class="info-list-w-icon">
-                      <div class="info-block-w-icon">
-                        <div class="ci-icon">
-                          <i class="lnr lnr-store"></i>
-                        </div>
-
-                        <div class="ci-text">
-                          <h4>Ecommerce</h4>
-                          <p>Creating an ecommerce platform involves several key steps and considerations. Here's a guide to help you create an ecommerce website or platform:</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="info-list-w-icon">
-                      <div class="info-block-w-icon">
-                        <div class="ci-icon">
-                          <i class="lnr lnr-laptop-phone"></i>
-                        </div>
-
-                        <div class="ci-text">
-                          <h4>Copywriting</h4>
-                          <p>Copywriting is the art and skill of writing persuasive and compelling content for marketing purposes. Whether you're writing copy for a website, advertisement, email campaign, or social media post, effective copywriting can help capture attention, engage readers, and drive desired actions. Here are some key principles and tips for effective copywriting:</p>
-                        </div>
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-6">
-                    <div class="info-list-w-icon">
-                      <div class="info-block-w-icon">
-                        <div class="ci-icon">
-                          <i class="lnr lnr-pencil"></i>
-                        </div>
-
-                        <div class="ci-text">
-                          <h4>Web Design</h4>
-                          <p>Creating a compelling web design involves several key principles and steps. Here's a guide to help you create an effective and visually appealing website design:</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="info-list-w-icon">
-                      <div class="info-block-w-icon">
-                        <div class="ci-icon">
-                          <i class="lnr lnr-flag"></i>
-                        </div>
-
-                        <div class="ci-text">
-                          <h4>Management</h4>
-                          <p>Management refers to the process of planning, organizing, leading, and controlling resources (such as people, finances, materials, and information) within an organization to achieve specific goals and objectives. Effective management involves a combination of skills, strategies, and practices to ensure efficient operations and maximize performance. Here are key aspects of management:</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- /What I DO / Services Section -->
-              
-
-              <!-- Testimonials Section -->
-              <section>
-                <!-- Add White Space -->
-                <div class="p-10"></div>
-                <!-- /Add White Space -->
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h2>PRODUCT FOR SALE</h2>
-                    </div>
-                  </div>
-                </div>
-
-
-                
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">        
-                    <div id="testimonials_be6bf74" class="testimonials owl-carousel loop-off autoplay-off" data-mobile-items="1" data-tablet-items="2" data-items="2">
-
-
- <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/7.png" alt="Robert Watkins"/>
-                          </div>
-
-                          <div class="testimonial-text">
-                            <p>
-                              ដែលអាចបម្រើអតិថិជនបាន 24 ម៉ោងក្នុងមួយថ្ងៃ ដោយមិនចាំបាច់មានបុគ្គលិកប្រចាំការ។ ម៉ាស៊ីនអាចផលិតទឹកកកបានរហូតដល់ 180kg/ថ្ងៃ និងអាចកំណត់ប្រព័ន្ធទូទាត់តាម QR Code ដើម្បីឱ្យអតិថិជនទិញបានយ៉ាងងាយស្រួល។</p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">ទទួលបានចំណូលប្រចាំថ្ងៃ ពេញមួយជីវិត្ត</h5>
-                            <p class="testimonial-firm">
-                              <a href="blog.ice.html"   target="_self" >មើលពត៌មានលម្អិត</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                              <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                      <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/2.png" alt="Robert Watkins"/>
-                          </div>
-
-                          <div class="testimonial-text">
-                            <p>ទូលក់ទឹកស្វ័យប្រវត្តិ គឺជាម៉ាស៊ីនដែលអាចចែកចាយទឹកស្អាតទៅអតិថិជនដោយស្វ័យប្រវត្តិ 24 ម៉ោងក្នុងមួយថ្ងៃ។ អតិថិជនគ្រាន់តែនាំដបទឹកមកបំពេញ ហើយបង់ប្រាក់តាមសាច់ប្រាក់ ឬ QR Code (។អាស្រ័យលើម៉ូឌែល)</p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">ទទួលបានចំណូលប្រចាំថ្ងៃ ពេញមួយជីវិត្ត</h5>
-                            <p class="testimonial-firm">
-                              <a href="blog-water.html"   target="_self" >មើលពត៌មានលម្អិត</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                              <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-
-                      <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/1.png" alt="Billy Adams"/>
-                          </div>              
-
-                          <div class="testimonial-text">
-                            <p>បើអ្នកកំពុងស្វែងរក អាជីវកម្មរកចំណូលបន្ថែម ទូកាហ្វេស្វ័យប្រវត្តិ (Coffee Vending Machine) គឺជាជម្រើសមួយដែលអាចដំណើរការបាន 24 ម៉ោងក្នុងមួយថ្ងៃ ដោយមិនចាំបាច់មានបុគ្គលិកប្រចាំ។. 
-                                ទូកាហ្វេស្វ័យប្រវត្តិ រកចំណូលបន្ថែម
-
-                              <br/>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">ទទួលបានចំណូលប្រចាំថ្ងៃ ពេញមួយជីវិត្ត</h5>
-                            <p class="testimonial-firm">
-                              <a href="blog-coffe.html" target="_self" >មើលពត៌មានលម្អិត</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                            <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-
-                        <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/4.png" alt="Gary Johnson"/>
-                          </div>              
-
-                          <div class="testimonial-text">
-                            <p>Only brand condom vending machine integrate with QR payment.
-
-                              <br/>
-                              <br/>
-                              <br/>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">Saat Condom Price 500$</h5>
-                            <p class="testimonial-firm">
-                              <a href="http://t.me/pilnanchhiev" target="_blank">Buy Now</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                            <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/3.png" alt="Gary Johnson"/>
-                          </div>              
-
-                          <div class="testimonial-text">
-                            <p>Cash Kiosk Self Service Payment Provider connected with all kinds payment & banking.
-
-                              <br/>
-                              <br/>
-                              <br/>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">Saat Money Price XXXX$</h5>
-                            <p class="testimonial-firm">
-                              <a href="http://t.me/pilnanchhiev" target="_blank">Buy Now</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                            <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                    
-
-                      <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/6.png" alt="Gary Johnson"/>
-                          </div>              
-
-                          <div class="testimonial-text">
-                            <p>The first Laundromat Strong Franchise Barnd in Cambodia with App for users and owners to manage business.
-
-                             
-                              <br/>
-                              <br/>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">Saat Wash Price S-01 || 25000$</h5>
-                            <p class="testimonial-firm">
-                              <a href="http://t.me/pilnanchhiev" target="_blank">Buy Now</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                            <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="testimonial testimonial-item">
-                        <div class="testimonial-content">
-                          <div class="testimonial-picture">
-                            <img src="./img/testimonials/5.png" alt="Gary Johnson"/>
-                          </div>              
-
-                          <div class="testimonial-text">
-                            <p>Platform for resturant to create e-menu, user make order and payment fast, easily and low cost.
-
-                              <br/>
-                              <br/>
-                              
-                            </p>
-                          </div>
-
-                          <div class="testimonial-author-info">
-                            <h5 class="testimonial-author">Saat Menu Free </h5>
-                            <p class="testimonial-firm">
-                              <a href="https://saat.menu/" target="_blank">Saat Menu</a>
-                            </p>
-                          </div>
-
-                          <div class="testimonial-icon">
-                            <i class="fa fa-quote-left"></i>
-                          </div>
-
-                          <div class="testimonial-icon-big">
-                            <i class="fa fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-              </section>
-              <!-- /Testimonials Section -->
-
-              <!-- Clients Section -->
-              <section>
-                <!-- Add White Space -->
-                <div class="p-30"></div>
-                <!-- /Add White Space -->
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h2>Clients</h2>
-                    </div>
-                  </div>
-                </div>
-          
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div id="clients_a1adde6" class="clients owl-carousel loop-off autoplay-off" data-mobile-items="2" data-tablet-items="4" data-items="5">
-                      <div class="client-block">
-                        <a href="./img/clients/1.png" target="_blank" title="Company 1">
-                          <img src="./img/clients/1.png" alt="Company 1">
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="./img/clients/2.png" target="_blank" title="Company 2">
-                          <img src="./img/clients/2.png" alt="Company 2">
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="./img/clients/3.png" target="_blank" title="Company 3">
-                          <img src="./img/clients/3.png" alt="Company 3">
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="./img/clients/4.png" target="_blank" title="Company 4">
-                          <img src="./img/clients/4.png" alt="Company 4">
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="./img/clients/5.png" target="_blank" title="Company 5">
-                          <img src="./img/clients/5.png" alt="Company 5">
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="./img/clients/6.png" target="_blank" title="Company 6">
-                          <img src="./img/clients/6.png" alt="Company 6">
-                        </a>
-                      </div>
-
-                      <!-- <div class="client-block">
-                        <a href="http://example.com" target="_blank" title="Company 7">
-                          <img src="./img/clients/client-7.png" alt="Company 7">
-                        </a>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- /Clients Section -->
-
-              <!-- Pricing Section -->
-              <section>
-                <!-- Add White Space -->
-                <div class="p-30"></div>
-                <!-- /Add White Space -->
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h2>Pricing</h2>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fw-pricing">
-                      
-                      <div class="fw-package ">
-                        <div class="fw-heading-row">
-                          <h4>Online Marketing</h4>
-                        </div>
-                    
-                        <div class="fw-pricing-row">
-                          <span>$350</span>
-                          <small>/month</small>
-                        </div>
-
-                        <div class="fw-button-row">
-                          <a href="boost.html" target="_self" class="btn btn-secondary">Communication</a>
-                        </div>
-
-                        <div class="fw-default-row">Creating an effective online marketing strategy involves several key steps and considerations.
-                           Here is a guide to help you create a successful online marketing plan:</div>
-
-                        <!-- <div class="fw-default-row">Pellentesque scelerisque</div>
-
-                        <div class="fw-default-row">Morbi eu sagittis</div>           -->
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fw-pricing">
-                      <div class="fw-package highlight">
-                        <div class="fw-heading-row">
-                          <h4>Graphic Designer</h4>
-                        </div>
-                    
-                        <div class="fw-pricing-row">
-                          <span>$700</span>
-                          <small>/month</small>
-                        </div>
-
-                        <div class="fw-button-row">
-                          <a href="desgin.html" target="_self" class="btn btn-primary">Communication</a>
-                        </div>
-
-                        <div class="fw-default-row"> continuously honing your skills, gaining experience, 
-                          networking, and staying updated with industry trends, you can build a successful career as a graphic designer.</div>
-
-                        <!-- <div class="fw-default-row">Pellentesque scelerisque</div>
-                        
-                        <div class="fw-default-row">Morbi eu sagittis</div>
-
-                        <div class="fw-default-row">Donec non diam</div> -->
-          
-        
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fw-pricing">
-                      <div class="fw-package ">
-                        <div class="fw-heading-row">
-                          <h4>POS System</h4>
-                        </div>
-                    
-                        <div class="fw-pricing-row">
-                          <span>$600</span>
-                          <small>/month</small>
-                        </div>
-
-                        <div class="fw-button-row">
-                          <a href="pos.html" target="_self" class="btn btn-secondary">Communication</a>
-                        </div>
-                     
-
-                        <div class="fw-default-row">Creating a Point of Sale (POS) system involves several key steps and considerations. Here's 
-                          a guide to help you create a POS system:
-                       
-                        </div>
-                        <br/>
-                       
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- /Pricing Section -->
-
-              <!-- Fun Facts Section -->
-              <section>
-                <!-- Add White Space -->
-                <div class="p-30"></div>
-                <!-- /Add White Space -->
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h2>Working For Partime </h2>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fun-fact">
-                      <div class="fun-fact-icon">
-                        <i class="lnr lnr-heart"></i>
-                      </div>
-                      <span class="fun-fact-block-value">150$</span>
-                      <h4>
-                        Boost Page : 150 dollor per month </h4>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fun-fact">
-                      <div class="fun-fact-icon">
-                        <i class="lnr lnr-clock"></i>
-                      </div>
-                      <span class="fun-fact-block-value">100$</span>
-                      <h4>Page management : 100 dollor per month</h4>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fun-fact">
-                      <div class="fun-fact-icon">
-                        <i class="lnr lnr-star"></i>
-                      </div>
-                      <span class="fun-fact-block-value">250$</span>
-                      <h4> Event || Photography || Videography </h4>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- /Fun Facts Section -->
-
-
-               <!-- Fun Facts Section -->
-               <section>
-                <!-- Add White Space -->
-                <div class="p-30"></div>
-                <!-- /Add White Space -->
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h2>Tools</h2>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                 
-
-                 <div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/sonya6600.webp" alt="Sony A6600">
-        </div>
-
-        <div class="product-info">
-            <h3>Camera Sony A6600 New</h3>
-            <p>Professional Mirrorless Camera for Photography & Video.</p>
-            <div class="price">$1500.00</div>
-        </div>
-
-    </div>
-</div>
-
-<div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/len 50mm.png" alt="Sony 50mm Lens">
-        </div>
-
-        <div class="product-info">
-            <h3>Lens Sony FE 50mm F1.8</h3>
-            <p>Perfect for portraits with beautiful background blur.</p>
-            <div class="price">$150.00</div>
-        </div>
-
-    </div>
-</div>
-
-<div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/sony 28-70.png" alt="Sony 28-70 Lens">
-        </div>
-
-        <div class="product-info">
-            <h3>Lens Sony FE 28-70mm F3.5-5.6</h3>
-            <p>Versatile zoom lens for everyday photography.</p>
-            <div class="price">$399.00</div>
-        </div>
-
-    </div>
-</div>
-                
-                 <div class="col-md-4 col-sm-6">
-    <div class="product-card">
-
-        <div class="product-image">
-
-            <span class="discount">BUY OFF</span>
-
-            <img src="img/blog/11.png" alt="TOSHIBA HDD">
-
-        </div>
-
-        <div class="product-info">
-
-            <h3>TOSHIBA 500GB Internal Hard Disk</h3>
-
-            <p>
-                High-speed SATA Internal Hard Drive.
-                Reliable storage solution 
-            </p>
-
-            <div class="price">$65.00</div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="col-md-4 col-sm-6">
-    <div class="product-card">
-
-        <div class="product-image">
-
-            <span class="discount">BUY OFF</span>
-
-            <img src="img/blog/12.png" alt="1TB HDD">
-
-        </div>
-
-        <div class="product-info">
-
-            <h3>Internal Hard Drive HDD 128G SATA</h3>
-
-            <p>
-                Large capacity 128G SATA hard drive
-                for secure data storage.
-            </p>
-
-            <div class="price">$35.00</div>
-
-        </div>
-
-    </div>
-</div>
-
-      <div class="col-md-4 col-sm-6">
-    <div class="product-card">
-
-        <div class="product-image">
-
-            <span class="discount">BUY OFF</span>
-
-            <img src="img/blog/HDD 2TB.webp" alt="2TB HDD">
-
-        </div>
-
-        <div class="product-info">
-
-            <h3>Internal Hard Drive HDD 2TB SATA</h3>
-
-            <p>
-                Large capacity 2TB SATA hard drive
-                for secure data storage.
-            </p>
-
-            <div class="price">$170.00</div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="col-md-4 col-sm-6">
-    <div class="product-card">
-
-        <div class="product-image">
-
-            <span class="discount">BUY OFF</span>
-
-            <img src="img/blog/2-88.webp" alt="8TB HDD">
-
-        </div>
-
-        <div class="product-info">
-
-            <h3>Internal Hard Drive HDD 8TB SATA</h3>
-
-            <p>
-                Large capacity 8TB SATA hard drive
-                for secure data storage.
-            </p>
-
-            <div class="price">$330.00</div>
-
-        </div>
-
-    </div>
-</div>
-
-           
-                  
-                 <!-- Sony Lens -->
-<div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/13.png" alt="Sony Lens">
-        </div>
-
-        <div class="product-info">
-            <h3>Xiaomi Pad 5Pro - Xiaomi Global</h3>
-            <p>Xiaomi Pad 5 Android tablet. Announced Aug 2021</p>
-            <div class="price">$339.00</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- MacBook -->
-<div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/10.png" alt="MacBook Pro">
-        </div>
-
-        <div class="product-info">
-            <h3>MacBook Pro 16" (2021)</h3>
-            <p>Apple M1 Pro • 16-inch Retina Display • Professional.</p>
-            <div class="price">$1800.00</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Keyboard -->
-<div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/keybord-01.png" alt="Keyboard">
-        </div>
-
-        <div class="product-info">
-            <h3>K500 RGB Keyboard New</h3>
-            <p>Mechanical Gaming Keyboard with RGB Backlight.</p>
-            <div class="price">$40.00</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Monitor -->
-<div class="col-xs-12 col-sm-4">
-    <div class="product-card">
-
-        <div class="product-image">
-            <span class="discount">BUY OFF</span>
-            <img src="img/blog/monitor.png" alt="Xiaomi Monitor">
-        </div>
-
-        <div class="product-info">
-            <h3>Xiaomi Redmi Curved Monitor 30"</h3>
-            <p>200Hz Gaming Monitor • Resolution 2560 × 1080</p>
-            <div class="price">$299.00</div>
-        </div>
-
-    </div>
-</div>
-
-                </div>
-              </section>
-              <!-- /Fun Facts Section -->
-            
-            </div>
-          </div>
-
-          <!-- /Footer -->
-          <footer class="site-footer clearfix">
-            <div class="footer-social">
-              <ul class="footer-social-links">
-                <li>
-                  <a href="https://t.me/pilnanchhiev" target="_blank">Telegram</a>
-                </li>
-                <li>
-                  <a href="https://www.facebook.com/pil.nanchhiev.7/" target="_blank">Facebook</a>
-                </li>
-                <li>
-                  <a href="https://www.tiktok.com/@chhiev347?lang=en" target="_blank">Tiktok</a>
-                </li>
-              </ul>
-            </div>
-        
-            <div class="footer-copyrights">
-              <p>© 2024 All rights reserved.</p>
-            </div>
-          </footer>
-          <!-- /Footer -->
-        </div>
-        <!-- /Page Content -->
+      <div class="header-actions">
+        <button
+          class="icon-btn"
+          id="themeBtn"
+          aria-label="Toggle dark mode"
+          title="Toggle theme"
+        >
+          🌙
+        </button>
       </div>
-    </div>
-    <!-- /Page Wrapper -->
 
+    </header>
 
+    <!-- =====================================
+         HERO
+    ====================================== -->
 
-    <style> 
+    <section class="hero">
 
-.product-card{
+      <div class="hero-content">
 
-background:#fff;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-transition:.3s;
-margin-bottom:30px;
+        <span class="hero-badge">✨ Welcome</span>
 
-}
+        <h2>Explore My World</h2>
 
-.product-card:hover{
+        <p>
+          Discover my profile, tools, media, learning resources,
+          and creative works in one place.
+        </p>
 
-transform:translateY(-8px);
-box-shadow:0 15px 35px rgba(0,0,0,.15);
+        <button class="hero-btn" data-link="index.html">
+          Explore Profile
+          <span>→</span>
+        </button>
 
-}
+      </div>
 
-.product-image{
+    </section>
 
-position:relative;
-padding:30px;
-text-align:center;
-background:#fafafa;
+    <!-- =====================================
+         MAIN MENU
+    ====================================== -->
 
-}
+    <main class="container">
 
-.product-image img{
+      <div class="section-title">
+        <h2>Explore</h2>
+        <p>Choose a section to continue</p>
+      </div>
 
-width:220px;
-height:220px;
-object-fit:contain;
+      <div class="menu-grid">
 
-}
+        <!-- =================================
+             ABOUT ME + SUBMENU
+        ================================== -->
 
-.discount{
+        <div class="about-wrapper">
 
-position:absolute;
-top:15px;
-right:15px;
-background:#d81b60;
-color:#fff;
-padding:8px 18px;
-font-size:14px;
-font-weight:bold;
-border-radius:30px;
+          <button class="menu-card about-main" id="aboutBtn">
 
-}
+            <div class="menu-icon blue">👤</div>
 
-.product-info{
+            <div class="menu-info">
+              <h3>About Me</h3>
+              <p>Personal profile & information</p>
+            </div>
 
-padding:25px;
+            <span class="arrow">›</span>
 
-}
+          </button>
 
-.product-info h3{
+          <!-- Submenu -->
+          <div class="submenu" id="aboutSubmenu">
 
-font-size:24px;
-font-weight:700;
-margin-bottom:12px;
+            <button class="sub-card" data-link="loan.html">
+              <div class="sub-icon teal">💰</div>
+              <div>
+                <h4>Loan</h4>
+                <p>Loan information</p>
+              </div>
+            </button>
 
-}
+            <button class="sub-card" data-link="income.html">
+              <div class="sub-icon lime">📈</div>
+              <div>
+                <h4>Income</h4>
+                <p>Income information</p>
+              </div>
+            </button>
 
-.product-info p{
+          </div>
 
-font-size:16px;
-color:#777;
-line-height:1.6;
-margin-bottom:25px;
+        </div>
 
-}
+        <!-- =================================
+             RESUME
+        ================================== -->
 
-.price{
+        <button class="menu-card" data-link="resume.html">
 
-font-size:24px;
-font-weight:bold;
-color:#d81b60;
+          <div class="menu-icon purple">📄</div>
 
-}
+          <div class="menu-info">
+            <h3>Resume</h3>
+            <p>Experience & skills</p>
+          </div>
 
+          <span class="arrow">›</span>
 
-    </style>
+        </button>
 
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/modernizr.custom.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src='js/jquery.shuffle.min.js'></script>
-    <script src='js/masonry.pkgd.min.js'></script>
-    <script src='js/owl.carousel.min.js'></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.dlmenu.js"></script>
-    <script src="js/validator.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+        <!-- =================================
+             PORTFOLIO
+        ================================== -->
+
+        <button class="menu-card" data-link="portfolio.html">
+
+          <div class="menu-icon orange">🎨</div>
+
+          <div class="menu-info">
+            <h3>Portfolio</h3>
+            <p>My creative works</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             AI CAPTION
+        ================================== -->
+
+        <button
+          class="menu-card"
+          data-link="https://ai-caption-generator-ls5y.onrender.com/"
+        >
+
+          <div class="menu-icon pink">✍️</div>
+
+          <div class="menu-info">
+            <h3>AI Caption</h3>
+            <p>AI caption generator</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             VIDEO
+        ================================== -->
+
+        <button class="menu-card" data-link="video.html">
+
+          <div class="menu-icon red">🎬</div>
+
+          <div class="menu-info">
+            <h3>Video</h3>
+            <p>Watch videos</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             MUSIC
+        ================================== -->
+
+        <button class="menu-card" data-link="music.html">
+
+          <div class="menu-icon green">🎵</div>
+
+          <div class="menu-info">
+            <h3>Music</h3>
+            <p>Listen to music</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             BOOKS
+        ================================== -->
+
+        <button class="menu-card" data-link="book.html">
+
+          <div class="menu-icon yellow">📚</div>
+
+          <div class="menu-info">
+            <h3>Books</h3>
+            <p>Read books</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             COURSE
+        ================================== -->
+
+        <button class="menu-card" data-link="lessons.html">
+
+          <div class="menu-icon cyan">🎓</div>
+
+          <div class="menu-info">
+            <h3>Course</h3>
+            <p>Learning resources</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+        <!-- =================================
+             CONTACT
+        ================================== -->
+
+        <button class="menu-card contact-card" data-link="contact.html">
+
+          <div class="menu-icon indigo">📞</div>
+
+          <div class="menu-info">
+            <h3>Contact</h3>
+            <p>Get in touch with me</p>
+          </div>
+
+          <span class="arrow">›</span>
+
+        </button>
+
+      </div>
+
+    </main>
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer class="footer">
+      <p>© 2026 Chhiev Profile</p>
+      <p>Made with ❤️</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Message -->
+  <div class="toast" id="toast">Opening...</div>
+
+  <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
+
+  <script>
+
+    /* ======================================
+       TELEGRAM MINI APP
+    ====================================== */
+
+    const tg = window.Telegram?.WebApp;
+
+    if (tg) {
+      tg.ready();
+      tg.expand();
+
+      // Telegram colors
+      if (tg.setHeaderColor) {
+        tg.setHeaderColor("#f4f8fc");
+      }
+
+      if (tg.setBackgroundColor) {
+        tg.setBackgroundColor("#f4f8fc");
+      }
+    }
+
+    /* ======================================
+       HAPTIC FEEDBACK
+    ====================================== */
+
+    function haptic(type = "light") {
+      if (tg?.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred(type);
+      }
+    }
+
+    /* ======================================
+       TOAST
+    ====================================== */
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1200);
+    }
+
+    /* ======================================
+       ABOUT ME SUBMENU
+    ====================================== */
+
+    const aboutBtn = document.getElementById("aboutBtn");
+    const aboutSubmenu = document.getElementById("aboutSubmenu");
+
+    aboutBtn.addEventListener("click", () => {
+      const isOpen = aboutSubmenu.classList.toggle("show");
+
+      aboutBtn.classList.toggle("open", isOpen);
+
+      haptic("light");
+    });
+
+    /* ======================================
+       OPEN LINKS
+    ====================================== */
+
+    document.querySelectorAll("[data-link]").forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const link = button.dataset.link;
+
+        if (!link) return;
+
+        haptic("light");
+
+        // External URL
+        if (link.startsWith("http://") || link.startsWith("https://")) {
+
+          if (tg?.openLink) {
+            tg.openLink(link);
+          } else {
+            window.open(link, "_blank", "noopener,noreferrer");
+          }
+
+          return;
+        }
+
+        // Internal HTML page
+        // Example: loan.html, resume.html, video.html
+        window.location.href = link;
+
+      });
+
+    });
+
+    /* ======================================
+       DARK MODE
+    ====================================== */
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    let darkMode = false;
+
+    themeBtn.addEventListener("click", () => {
+
+      darkMode = !darkMode;
+
+      document.body.classList.toggle("dark", darkMode);
+
+      themeBtn.textContent = darkMode ? "☀️" : "🌙";
+
+      // Update Telegram colors
+      if (tg) {
+        if (tg.setHeaderColor) {
+          tg.setHeaderColor(darkMode ? "#101820" : "#f4f8fc");
+        }
+
+        if (tg.setBackgroundColor) {
+          tg.setBackgroundColor(darkMode ? "#101820" : "#f4f8fc");
+        }
+      }
+
+      haptic("light");
+
+    });
+
+    /* ======================================
+       TELEGRAM USER INFO (OPTIONAL)
+    ====================================== */
+
+    // You can access Telegram user information
+    // when the Mini App is opened inside Telegram.
+    //
+    // Example:
+    //
+    // const user = tg?.initDataUnsafe?.user;
+    // console.log(user);
+
+  </script>
+
+</body>
 </html>

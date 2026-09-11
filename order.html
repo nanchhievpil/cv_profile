@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saat Money - Order</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Khmer", sans-serif;
+      background: #f4f7f5;
+      color: #17251c;
+    }
+
+    /* Product Card */
+    .product-card {
+      max-width: 380px;
+      margin: 50px auto;
+      padding: 28px;
+      background: #ffffff;
+      border: 1px solid #e6ece8;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+    }
+
+    .product-card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .product-price {
+      color: #16a34a;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 22px;
+    }
+
+    .buy-now-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 24px;
+      background: #16a34a;
+      color: #ffffff;
+      border: 0;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .buy-now-btn:hover {
+      background: #15803d;
+      transform: translateY(-2px);
+    }
+
+    /* Modal */
+    .order-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      padding: 20px;
+      background: rgba(15, 23, 18, 0.65);
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+    }
+
+    .order-modal.active {
+      display: flex;
+    }
+
+    .order-box {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      max-height: 95vh;
+      overflow-y: auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .order-header {
+      margin-bottom: 24px;
+    }
+
+    .order-header h2 {
+      margin: 0 0 8px;
+      font-size: 25px;
+    }
+
+    .order-header p {
+      margin: 0;
+      color: #6b7a70;
+      font-size: 14px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      width: 35px;
+      height: 35px;
+      border: 0;
+      border-radius: 50%;
+      background: #f1f5f2;
+      color: #344238;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334238;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #dce5de;
+      border-radius: 10px;
+      background: #fbfdfb;
+      color: #17251c;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .order-summary {
+      margin: 22px 0;
+      padding: 17px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .summary-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary-total {
+      padding-top: 12px;
+      margin-top: 12px;
+      border-top: 1px solid #bbf7d0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #15803d;
+    }
+
+    .payment-box {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #e1e9e3;
+      border-radius: 12px;
+    }
+
+    .payment-box h4 {
+      margin: 0 0 12px;
+      font-size: 15px;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 10px 0;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .payment-option input {
+      accent-color: #16a34a;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      border: 0;
+      border-radius: 10px;
+      background: #16a34a;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #15803d;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .success-message,
+    .error-message {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .success-message {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error-message {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .payment-instructions {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      color: #1e40af;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .order-box {
+        padding: 22px;
+      }
+
+      .two-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Product Card -->
+  <div class="product-card">
+    <h2>Saat Money</h2>
+    <div class="product-price">$XXXX</div>
+
+    <button type="button"
+            class="buy-now-btn"
+            onclick="openOrderForm()">
+      🛒 Buy Now
+    </button>
+  </div>
+
+  <!-- Order Modal -->
+  <div id="orderModal" class="order-modal">
+    <div class="order-box">
+
+      <button type="button"
+              class="close-btn"
+              onclick="closeOrderForm()">&times;</button>
+
+      <div class="order-header">
+        <h2>🛒 Place Your Order</h2>
+        <p>បំពេញព័ត៌មានខាងក្រោម ដើម្បីបញ្ជាទិញ</p>
+      </div>
+
+      <form id="orderForm">
+
+        <div class="form-group">
+          <label>Product / ផលិតផល</label>
+          <input type="text"
+                 name="product"
+                 value="Saat Money"
+                 readonly>
+        </div>
+
+        <div class="two-columns">
+          <div class="form-group">
+            <label>Price / តម្លៃ</label>
+            <input type="text"
+                   id="priceDisplay"
+                   value="$XXXX"
+                   readonly>
+            <input type="hidden"
+                   name="price"
+                   id="price"
+                   value="0">
+          </div>
+
+          <div class="form-group">
+            <label>Quantity / ចំនួន</label>
+            <input type="number"
+                   name="quantity"
+                   id="quantity"
+                   value="1"
+                   min="1"
+                   required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Full Name / ឈ្មោះពេញ *</label>
+          <input type="text"
+                 name="customer_name"
+                 placeholder="បញ្ចូលឈ្មោះរបស់អ្នក"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number / លេខទូរស័ព្ទ *</label>
+          <input type="tel"
+                 name="phone"
+                 placeholder="0XX XXX XXX"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label>Address / អាសយដ្ឋាន *</label>
+          <textarea name="address"
+                    placeholder="បញ្ចូលអាសយដ្ឋានដឹកជញ្ជូន"
+                    required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Note / កំណត់ចំណាំ</label>
+          <textarea name="note"
+                    placeholder="កំណត់ចំណាំបន្ថែម (បើមាន)"></textarea>
+        </div>
+
+        <div class="payment-box">
+          <h4>💳 Payment Method / វិធីទូទាត់</h4>
+
+          <label class="payment-option">
+            <input type="radio"
+                   name="payment_method"
+                   value="ABA / Bank Transfer"
+                   checked>
+            ABA / Bank Transfer
+          </label>
+
+          <label class="payment-option">
+            <input type="radio"
+                   name="payment_method"
+                   value="KHQR">
+            KHQR
+          </label>
+
+          <label class="payment-option">
+            <input type="radio"
+                   name="payment_method"
+                   value="Cash on Delivery">
+            Cash on Delivery
+          </label>
+        </div>
+
+        <div class="order-summary">
+          <div class="summary-row">
+            <span>Product</span>
+            <strong>Saat Money</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Unit Price</span>
+            <strong id="summaryPrice">$0.00</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Quantity</span>
+            <strong id="summaryQuantity">1</strong>
+          </div>
+
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <strong id="summaryTotal">$0.00</strong>
+          </div>
+        </div>
+
+        <button type="submit"
+                class="submit-btn"
+                id="submitBtn">
+          ✅ Confirm Order
+        </button>
+
+        <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="error-message"></div>
+
+        <div id="paymentInstructions" class="payment-instructions">
+          <strong>💳 Payment Instructions</strong><br><br>
+          សូមរង់ចាំការបញ្ជាក់ពី Admin អំពីព័ត៌មានទូទាត់ប្រាក់។
+          <br><br>
+          Telegram: <a href="https://t.me/pilnanchhiev"
+                      target="_blank">@pilnanchhiev</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /*
+      កំណត់តម្លៃផលិតផលនៅទីនេះ
+      ឧទាហរណ៍: 10 = $10
+    */
+    const PRODUCT_PRICE = 0;
+
+    document.getElementById("price").value = PRODUCT_PRICE;
+    document.getElementById("priceDisplay").value =
+      "$" + PRODUCT_PRICE.toFixed(2);
+
+    function updateSummary() {
+      const quantity =
+        parseInt(document.getElementById("quantity").value) || 1;
+
+      const total = PRODUCT_PRICE * quantity;
+
+      document.getElementById("summaryPrice").textContent =
+        "$" + PRODUCT_PRICE.toFixed(2);
+
+      document.getElementById("summaryQuantity").textContent = quantity;
+
+      document.getElementById("summaryTotal").textContent =
+        "$" + total.toFixed(2);
+    }
+
+    document.getElementById("quantity").addEventListener("input", updateSummary);
+
+    function openOrderForm() {
+      document.getElementById("orderModal").classList.add("active");
+      updateSummary();
+    }
+
+    function closeOrderForm() {
+      document.getElementById("orderModal").classList.remove("active");
+    }
+
+    document.getElementById("orderModal").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closeOrderForm();
+      }
+    });
+
+    document.getElementById("orderForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById("submitBtn");
+      const successMessage = document.getElementById("successMessage");
+      const errorMessage = document.getElementById("errorMessage");
+      const paymentInstructions = document.getElementById("paymentInstructions");
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "⏳ Sending Order...";
+
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
+      paymentInstructions.style.display = "none";
+
+      const formData = new FormData(this);
+
+      try {
+        const response = await fetch("order.php", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          successMessage.innerHTML =
+            "✅ <strong>Order Submitted Successfully!</strong><br>" +
+            "លេខ Order: " + result.order_id +
+            "<br>Admin នឹងទាក់ទងមកអ្នកឆាប់ៗនេះ។";
+
+          successMessage.style.display = "block";
+          paymentInstructions.style.display = "block";
+
+          this.reset();
+          updateSummary();
+        } else {
+          throw new Error(result.message || "Order failed");
+        }
+
+      } catch (error) {
+        errorMessage.textContent =
+          "❌ មិនអាចផ្ញើ Order បានទេ។ សូមព្យាយាមម្ដងទៀត។";
+
+        errorMessage.style.display = "block";
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "✅ Confirm Order";
+    });
+
+    updateSummary();
+  </script>
+
+</body>
+</html>
